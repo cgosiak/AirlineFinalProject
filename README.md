@@ -4,3 +4,11 @@ It also contains useful information about the methods, and parameters of classes
 
 # Main
 This is the <i>MAIN</i> hub of our program. It is responsible for abstracting all of our classes into readily accessible and available methods of getters and setters. This section will outline the methods: how to use them, and what they result in.
+
+# UML Diagram Link
+https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
+
+#Time/Task Log
+
+(11/4/2015 - 10:12 AM)(Matt L.)
+	Updated UML Diagram. Added basic frames for the following classes: DbManager, Airport parent class with Hub and Spoke child classes, Route, Plane, Seat parent class with Economy, EconPlus, and FirstClass child classes, Passenger
