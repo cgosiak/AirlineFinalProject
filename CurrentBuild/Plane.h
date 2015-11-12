@@ -78,9 +78,6 @@ namespace CalebG {
         // Write to External File
         void WriteToExternal();
 
-        // Run Test Cases
-        void RunTestCases();
-
 
     private:
         int flightNumber = 456;

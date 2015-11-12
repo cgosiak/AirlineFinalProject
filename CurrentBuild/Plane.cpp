@@ -31,81 +31,66 @@ namespace CalebG {
         int rows;
         int seats;
         UsefulFunctions useThis;
-        cout << "RUN TEST CASES FOR PROGRAM THREE!" << std::endl;
+        cout << "Would You Like to Read From an External File?" << std::endl;
         if (useThis.Yes_No_Question()) {
-            plane_rows = 6;
-            plane_seats_per_row = 4;
+            std::string nameOfFIle;
+            cout << "What is the name of the file your would like to read from? (ex. plane.txt): ";
+            cin >> nameOfFIle;
+
+            std::ifstream myInputFile(nameOfFIle.c_str());
+
+            int currentIter = 0;
+            if (myInputFile.is_open()) {
+                // Loop Through to EOF
+                std::string currentInput;
+                while (myInputFile >> currentInput) {
+                    // Gets numbers of rows
+                    if (currentIter == 0) {
+                        rows = std::stoi(currentInput);
+                    }
+                    else {
+                        // Get Seats per row
+                        if (currentIter == 1) {
+                            seats = std::stoi(currentInput);
+
+                            // Setup Everything before file reserves seats programatically
+                            plane_rows = rows;
+                            plane_seats_per_row = seats;
+
+                            printableDepartYear = departYear + 1900;
+
+                            Plane::Generate_seat_map();
+                            Plane::Get_current_time();
+                            Plane::Get_days_to_departure();
+                        }
+                        else {
+                            // Handles all reserved seats
+                            Plane::Reserve_seat(currentInput);
+                        }
+                    }
+                    currentIter++;
+                }
+                myInputFile.close();
+            }
+            else {
+                cout << "\nERROR: Cannot open file!" << std::endl;
+            }
+        }
+        else {
+            cout << "Please Enter the Amount of Rows for Your Plane: ";
+            cin >> rows;
+
+            cout << "Please Enter the Amount of Seats Per Row for Your Plane: ";
+            cin >> seats;
+
+            plane_rows = rows;
+            plane_seats_per_row = seats;
 
             printableDepartYear = departYear + 1900;
 
             Plane::Generate_seat_map();
             Plane::Get_current_time();
             Plane::Get_days_to_departure();
-
-            Plane::RunTestCases();
-        }
-        else {
-            cout << "Would You Like to Read From an External File?" << std::endl;
-            if (useThis.Yes_No_Question()) {
-                std::string nameOfFIle;
-                cout << "What is the name of the file your would like to read from? (ex. plane.txt): ";
-                cin >> nameOfFIle;
-
-                std::ifstream myInputFile(nameOfFIle.c_str());
-
-                int currentIter = 0;
-                if (myInputFile.is_open()) {
-                    // Loop Through to EOF
-                    std::string currentInput;
-                    while (myInputFile >> currentInput) {
-                        // Gets numbers of rows
-                        if (currentIter == 0) {
-                            rows = std::stoi(currentInput);
-                        }
-                        else {
-                            // Get Seats per row
-                            if (currentIter == 1) {
-                                seats = std::stoi(currentInput);
-
-                                // Setup Everything before file reserves seats programatically
-                                plane_rows = rows;
-                                plane_seats_per_row = seats;
-
-                                printableDepartYear = departYear + 1900;
-
-                                Plane::Generate_seat_map();
-                                Plane::Get_current_time();
-                                Plane::Get_days_to_departure();
-                            }
-                            else {
-                                // Handles all reserved seats
-                                Plane::Reserve_seat(currentInput);
-                            }
-                        }
-                        currentIter++;
-                    }
-                    myInputFile.close();
-                }
-                else {
-                    cout << "\nERROR: Cannot open file!" << std::endl;
-                }
-            }
-            else {
-                cout << "Please Enter the Amount of Rows for Your Plane: ";
-                cin >> rows;
-
-                cout << "Please Enter the Amount of Seats Per Row for Your Plane: ";
-                cin >> seats;
-
-                plane_rows = rows;
-                plane_seats_per_row = seats;
-
-                printableDepartYear = departYear + 1900;
-
-                Plane::Generate_seat_map();
-                Plane::Get_current_time();
-                Plane::Get_days_to_departure();
-            }
         }
     }
 
@@ -343,130 +328,4 @@ namespace CalebG {
         plane_seat_map->WriteDataToFile();
     }
 
-    void Plane::RunTestCases() {
-        double planeCost;
-        // Base Cost is 1000 usd
-        cout << "--------Test Case 1 Start--------";
-        // Seat 1A, this is a first class seat at 700 miles distance, 30 days to flight
-        planeCost = plane_seat_map->PrintSeatData(0,0,30,700);
-
-        // Should cost $3000.00 to pass
-        if (planeCost == 3000.00) {
-            cout << "Test 1 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 1 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 1 End----------\n" << std::endl;
-        cout << "--------Test Case 2 Start--------";
-        // Seat 1A, this is a first class seat at 700 miles distance, 25 days to flight
-        planeCost = plane_seat_map->PrintSeatData(0,0,25,700);
-
-        // Should cost $4000.00 to pass
-        if (planeCost == 4000.00) {
-            cout << "Test 2 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 2 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 2 End----------\n" << std::endl;
-        cout << "--------Test Case 3 Start--------";
-        // Seat 1A, this is a first class seat at 700 miles distance, 2 days to flight
-        planeCost = plane_seat_map->PrintSeatData(0,0,2,700);
-
-        // Should cost $5000.00 to pass
-        if (planeCost == 5000.00) {
-            cout << "Test 3 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 3 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 3 End----------\n" << std::endl;
-        cout << "--------Test Case 4 Start--------";
-        // Seat 1A, this is a first class seat at 900 miles distance, 30 days to flight
-        planeCost = plane_seat_map->PrintSeatData(0,0,30,900);
-
-        // Should cost $3000.00 to pass
-        if (planeCost == 3000.00) {
-            cout << "Test 4 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 4 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 4 End----------\n" << std::endl;
-        cout << "--------Test Case 5 Start--------";
-        // Seat 1A, this is a an economy seat at 700 miles distance, 30 days to flight
-        planeCost = plane_seat_map->PrintSeatData(4,0,30,700);
-
-        // Should cost $1000.00 to pass
-        if (planeCost == 1000.00) {
-            cout << "Test 5 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 5 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 5 End----------\n" << std::endl;
-        cout << "--------Test Case 6 Start--------";
-        // Seat 1A, this is an economy seat at 700 miles distance, 25 days to flight
-        planeCost = plane_seat_map->PrintSeatData(4,0,25,700);
-
-        // Should cost $1100.00 to pass
-        if (planeCost == 1100.00) {
-            cout << "Test 6 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 6 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 6 End----------\n" << std::endl;
-        cout << "--------Test Case 7 Start--------";
-        // Seat 1A, this is an economy seat at 700 miles distance, 4 days to flight
-        planeCost = plane_seat_map->PrintSeatData(4,0,4,700);
-
-        // Should cost $1200.00 to pass
-        if (planeCost == 1200.00) {
-            cout << "Test 7 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 7 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 7 End----------\n" << std::endl;
-        cout << "--------Test Case 8 Start--------";
-        // Seat 1A, this is an economy plus seat at 700 miles distance, 1 days to flight
-        planeCost = plane_seat_map->PrintSeatData(1,0,30,700);
-
-        // Should cost $1075.00 to pass
-        if (planeCost == 1075.00) {
-            cout << "Test 8 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 8 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 8 End----------\n" << std::endl;
-        cout << "--------Test Case 9 Start--------";
-        // Seat 1A, this is an economy plus seat at 900 miles distance, 12 days to flight
-        planeCost = plane_seat_map->PrintSeatData(1,0,12,900);
-
-        // Should cost $1235.00 to pass
-        if (planeCost == 1235.00) {
-            cout << "Test 9 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 9 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 9 End----------\n" << std::endl;
-        cout << "--------Test Case 10 Start--------";
-        // Seat 1A, this is an economy plus seat at 1000 miles distance, 30 days to flight
-        planeCost = plane_seat_map->PrintSeatData(1,0,30,1000);
-
-        // Should cost $1125.00 to pass
-        if (planeCost == 1125.00) {
-            cout << "Test 10 Pass!" << std::endl;
-        }
-        else {
-            cout << "Test 10 Fail!" << std::endl;
-        }
-        cout << "--------Test Case 10 End----------\n" << std::endl;
-
-
-    }
 }
