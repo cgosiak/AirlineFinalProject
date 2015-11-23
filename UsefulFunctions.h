@@ -6,7 +6,7 @@
 #define MYPROGRAM3_USEFULFUNCTIONS_H
 
 
-namespace CalebG {
+namespace FinalProject {
     class UsefulFunctions {
     public:
         UsefulFunctions();

@@ -1,7 +1,7 @@
 //
 // Created by Caleb J. Gosiak
 // Desc:
-// The "Plane" class is implemented in the CalebG namespace, as are all subsequent classes.
+// The "Plane" class is implemented in the FinalProject namespace, as are all subsequent classes.
 //
 #include <iostream>
 #include <fstream>
@@ -15,7 +15,7 @@ using std::cin;
 #include "Plane.h"
 #include "UsefulFunctions.h"
 
-namespace CalebG {
+namespace FinalProject {
 
     Plane::Plane(int rows, int seats) {
         plane_rows = rows;
@@ -180,7 +180,7 @@ namespace CalebG {
         cout << "Seat for Reservation: ";
         cin >> userSeat;
 
-        CalebG::UsefulFunctions useThis;
+        FinalProject::UsefulFunctions useThis;
 
         seat = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
         row--;
@@ -315,7 +315,7 @@ namespace CalebG {
         cout << "Seat for Return: ";
         cin >> userSeat;
 
-        CalebG::UsefulFunctions useThis;
+        FinalProject::UsefulFunctions useThis;
 
         seat = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
         row--;

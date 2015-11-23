@@ -13,10 +13,10 @@ using std::cin;
 #include "Seat.h"
 #include "UsefulFunctions.h"
 
-namespace CalebG {
+namespace FinalProject {
 
     Seat::Seat(double basePriceOfSeat, int daysLeftToFlight, int row, int seat, bool isIsle) {
-        CalebG::UsefulFunctions useThis;
+        FinalProject::UsefulFunctions useThis;
         std::string seatName = useThis.getStringfromInt(row+1)+useThis.getSeatLetterFromInt(seat);
         seatSpace = seat;
         mySeatLetter = useThis.getSeatLetterFromInt(seat);

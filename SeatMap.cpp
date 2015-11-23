@@ -15,7 +15,7 @@ using std::cin;
 #include "SeatMap.h"
 #include "UsefulFunctions.h"
 
-namespace CalebG {
+namespace FinalProject {
 
     SeatMap::SeatMap(int rows, int seats_per_row) {
         plane_rows = rows;

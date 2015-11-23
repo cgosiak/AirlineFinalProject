@@ -19,8 +19,8 @@ using std::endl;
 #include "UsefulFunctions.h"
 
 
-namespace CalebG {
-    bool CalebG::UsefulFunctions::Yes_No_Question() {
+namespace FinalProject {
+    bool FinalProject::UsefulFunctions::Yes_No_Question() {
         // create a set of acceptable continue commands
         std::set<string> yesList;
         yesList.insert("Y");

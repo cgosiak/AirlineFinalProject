@@ -5,7 +5,7 @@
 #ifndef MYPROGRAM3_SEAT_H
 #define MYPROGRAM3_SEAT_H
 
-namespace CalebG {
+namespace FinalProject {
     class Seat {
     public:
         Seat(double basePriceOfSeat, int daysLeftToFlight, int row, int seat, bool isIsle);

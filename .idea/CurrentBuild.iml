@@ -2,6 +2,8 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Airplane.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Airplane.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Plane.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Plane.h" isTestSource="false" />

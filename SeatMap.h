@@ -7,7 +7,7 @@
 
 #include "Seat.h"
 
-namespace CalebG {
+namespace FinalProject {
     class SeatMap {
     public:
         SeatMap(int rows, int seats_per_row);
@@ -41,7 +41,7 @@ namespace CalebG {
         int plane_rows;
         int plane_seats_per_row;
 
-        CalebG::Seat* **Seats;
+        FinalProject::Seat* **Seats;
 
     };
 }

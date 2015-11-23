@@ -8,7 +8,7 @@
 #include "SeatMap.h"
 #include <ctime>
 
-namespace CalebG {
+namespace FinalProject {
     class Plane {
     public:
         // This is the constructor for the plane class; this will set the private data members
@@ -92,7 +92,7 @@ namespace CalebG {
         // Every Plane Object will also Require a SeatMap Object
         // This must be a pointer, as I cannot create the object completely until
         // seats and rows are defined
-        CalebG::SeatMap* plane_seat_map;
+        FinalProject::SeatMap* plane_seat_map;
 
         // Save Current Time Values
         int currentYear;
