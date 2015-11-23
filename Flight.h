@@ -6,9 +6,9 @@
 #define MYPROGRAM3_AIRPLANE_H
 
 namespace FinalProject {
-    class Airplane {
+    class Flight {
     public:
-        Airplane();
+        Flight();
 
     private:
         int x = 0;

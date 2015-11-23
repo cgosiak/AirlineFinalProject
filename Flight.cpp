@@ -10,12 +10,12 @@ using std::ostream;
 using std::cout;
 using std::cin;
 
-#include "Airplane.h"
+#include "Flight.h"
 #include "UsefulFunctions.h"
 
 namespace FinalProject {
 
-    Airplane::Airplane() {
+    Flight::Flight() {
         cout << "AIRPLANE!" << std::endl;
     }
 }
