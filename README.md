@@ -15,3 +15,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/12/2015 - 1:30 PM)(Caleb G.)
 	Updated Master, added in my program 3 class structure/working program. Feel this is a good place to start with our project as it has many of classes implemented that we have chosen to include in our final program.
+
+(11/23/2015 - 12:00 PM)(Caleb G.)
+	Merged changes into Master: Updated header files, namespaces, and added a flight class.

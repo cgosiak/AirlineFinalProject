@@ -12,3 +12,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/4/2015 - 10:12 AM)(Matt L.)
 	Updated UML Diagram. Added basic frames for the following classes: DbManager, Airport parent class with Hub and Spoke child classes, Route, Plane, Seat parent class with Economy, EconPlus, and FirstClass child classes, Passenger
+
+(11/12/2015 - 1:30 PM)(Caleb G.)
+	Updated Master, added in my program 3 class structure/working program. Feel this is a good place to start with our project as it has many of classes implemented that we have chosen to include in our final program.
