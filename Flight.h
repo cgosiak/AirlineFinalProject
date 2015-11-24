@@ -9,9 +9,11 @@ namespace FinalProject {
     class Flight {
     public:
         Flight();
+        void Print_Flight_Name();
+        std::string Get_Flight_Name();
 
     private:
-        int x = 0;
+        std::string name_of_flight;
     };
 }
 
