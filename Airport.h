@@ -13,9 +13,10 @@ namespace FinalProject {
         Airport();
         void AddFlight();
         void PrintNamesOfAllFlights();
+        void CleanUp();
 
     private:
-        Flight **current_flights;
+        Flight *current_flights[100];
         int current_flight_amount = 0;
     };
 }

@@ -20,6 +20,7 @@ int main() {
     }
 
     myAirport.PrintNamesOfAllFlights();
+    myAirport.CleanUp();
 
     // Commented Out for Testing
     // while (myPlane.User_selection_tool());
