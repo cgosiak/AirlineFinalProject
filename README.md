@@ -18,3 +18,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/23/2015 - 12:00 PM)(Caleb G.)
 	Merged changes into Master: Updated header files, namespaces, and added a flight class.
+
+(11/24/2015 - 10:30 AM)(Caleb G.)
+	Figured out how to dynamically create new flight objects and keep track of them!! Whoop whoop!
