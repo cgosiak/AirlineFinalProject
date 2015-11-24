@@ -21,3 +21,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/24/2015 - 10:30 AM)(Caleb G.)
 	Figured out how to dynamically create new flight objects and keep track of them!! Whoop whoop!
+
+(11/24/2015 - 5:00  PM)(Caleb G.)
+	Created start of passenger class.

@@ -295,7 +295,8 @@ namespace FinalProject {
         first = reserveThis[0];
         second = reserveThis[1];
 
-        row = std::stoi(first);
+        row = std::stoi(first); //stoi causes problems for me  - Matt L.
+        // I see now! Why doesn't this work for you!!!
         seat = useThis.getIntFromSeatLetter(useThis.changeToUpper(second));
 
         // Return an uppercased string
