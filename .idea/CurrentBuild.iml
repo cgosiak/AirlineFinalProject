@@ -7,6 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Flight.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Flight.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Passenger.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Passenger.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Plane.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Plane.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Seat.cpp" isTestSource="false" />
