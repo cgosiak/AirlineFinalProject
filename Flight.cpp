@@ -38,6 +38,8 @@ namespace FinalProject {
         cin >> day;
         cout << std::endl;
 
+        cout << std::endl;
+
         // Call functions to complete setup of flight
         // Update_Days_To_Flight();
         // Assign_New_Plane();
@@ -85,20 +87,36 @@ namespace FinalProject {
     }
 
     void Flight::Print_Passenger_List() {
+        // Format Space
+        cout << std::endl;
+
         for (int i = 0; i < assigned_passengers; ++i) {
             if (i == 0) {
                 cout << "Flight " << flight_num << " Passenger List:" << std::endl;
                 cout << "___________________________________________" << std::endl;
                 cout << "| NUM | PASSENGER NAME              | SEAT |" << std::endl;
                 cout << "-------------------------------------------" << std::endl;
-                cout << "| " << i << " | " << passengers[i]->Get_Name() << " | " << passengers[i]->Get_Assigned_Seat() << " |" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(27) << passengers[i]->Get_Name() << " | " << std::setw(4) << passengers[i]->Get_Assigned_Seat() << " |" << std::endl;
                 cout << "-------------------------------------------" << std::endl;
             }
             else {
-                cout << "| " << i << " | " << passengers[i]->Get_Name() << " | " << passengers[i]->Get_Assigned_Seat() << " |" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(27) << passengers[i]->Get_Name() << " | " << std::setw(4) << passengers[i]->Get_Assigned_Seat() << " |" << std::endl;
                 cout << "-------------------------------------------" << std::endl;
             }
         }
+    }
 
+    std::string Flight::Get_Destination() {
+        return destination;
+    }
+
+    std::string Flight::Get_Departure_Date() {
+        std::string depart_day;
+        depart_day = std::to_string(month) + "-" + std::to_string(day) + "-" + std::to_string(year);
+        return depart_day;
+    }
+
+    int Flight::Get_Seats_Available() {
+        return seats_available;
     }
 }

@@ -15,17 +15,25 @@ int main() {
 
     Airport myAirport;
 
-//    for (int i = 0; i < 2; ++i) {
-//        myAirport.AddFlight();
-//    }
+    // Second Flight
+    myAirport.AddFlight();
 
-    myAirport.PrintNamesOfAllFlights();
+    myAirport.Print_Upcoming_Flights();
 
     // Just a test to print user
     for (int j = 0; j < 2; ++j) {
-        myAirport.current_flights[0]->Add_Passenger_To_Flight();
+        myAirport.selected_flight->Add_Passenger_To_Flight();
     }
-    myAirport.current_flights[0]->Print_Passenger_List();
+    myAirport.selected_flight->Print_Passenger_List();
+
+
+    myAirport.Select_New_Flight();
+
+
+    for (int j = 0; j < 2; ++j) {
+        myAirport.selected_flight->Add_Passenger_To_Flight();
+    }
+    myAirport.selected_flight->Print_Passenger_List();
 
     myAirport.CleanUp();
 

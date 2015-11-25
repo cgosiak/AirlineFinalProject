@@ -17,17 +17,17 @@ using std::cin;
 namespace FinalProject {
 
     Passenger::Passenger() {
+        cout << std::endl;
+        cout << "New Passenger Creation" << std::endl;
+        cout << "----------------------------" << std::endl;
         cout << "Passenger First Name: ";
         cin >> first_name;
-        cout << std::endl;
 
         cout << "Passenger Last Name: ";
         cin >> last_name;
-        cout << std::endl;
 
         cout << "Passenger Age: ";
         cin >> age;
-        cout << std::endl;
     }
 
     std::string Passenger::Get_Name() {

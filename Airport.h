@@ -13,19 +13,37 @@ namespace FinalProject {
     class Airport {
     public:
         Airport();
+
+        // Method to add a flight to the airport
         void AddFlight();
-        void PrintNamesOfAllFlights();
+
+        // Method to add plane to airport
+        void AddPlane();
+
+        // Cleans pointers
         void CleanUp();
+
+        // Assign Selected Flight, Automaticall set to the first flight if it exists
+        bool Select_Flight(int index_of_flight);
+
         // Pointers to all the flights at the given airport, max 100 right now
         Flight *current_flights[100];
 
-    private:
         // Pointers to all the planes at the given airport, max 100 right now
         Plane *planes_at_airport[100];
-        // Pointers to all the passengers at the given airport, max 1000 right now
-        Passenger *passengers_at_airport[1000]; // THis may make more sense to implement in the flight class
 
+        // Print all available flights
+        void Print_Upcoming_Flights();
+
+        // Select a new flight
+        void Select_New_Flight();
+
+        // Pointer to current selected flight
+        Flight *selected_flight;
+
+    private:
         int current_flight_amount = 0;
+        int current_plane_amount = 0;
     };
 }
 

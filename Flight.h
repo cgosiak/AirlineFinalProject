@@ -36,6 +36,15 @@ namespace FinalProject {
         // Print Names of all passengers
         void Print_Passenger_List();
 
+        // Get Destination
+        std::string Get_Destination();
+
+        // Printable Departure Date
+        std::string Get_Departure_Date();
+
+        // Get number of seats available
+        int Get_Seats_Available();
+
     private:
         // Name of Flight
         int flight_num;
@@ -66,6 +75,9 @@ namespace FinalProject {
 
         // Max available seats for the flight
         int max_amount_of_passengers;
+
+        // Current amount of available seats
+        int seats_available = 0;
 
         // Pointer to Passengers on flight
         Passenger *passengers[240]; // Initialized to 240, the max amount of passengers on a POSSIBLE flight,

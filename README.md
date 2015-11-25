@@ -27,3 +27,11 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/24/2015 - 9:00  PM)(Caleb G.)
 	Did a lot of work on Flight Class, started implementing very simple tests for method implementation. Pointers are working!!!
+
+(11/25/2015 - 12:30  PM)(Caleb G.)
+	Implemented Successful Methods To:
+	-Add New Flight to Schedule
+	-Add New Passenger to Flight
+	-Print Upcoming Flights
+	-Print a List of Passengers on a Flight
+	Will polish methods later! Also, I must note the being able to print the list of passengers to a flight also is the method I will use to print all passengers at the airport! Thus there is no need to keep track of an full list of all passengers at the airport, we would just make that list dynamically.
