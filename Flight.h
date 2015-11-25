@@ -45,6 +45,12 @@ namespace FinalProject {
         // Get number of seats available
         int Get_Seats_Available();
 
+        // Retunr amount of passengers on flight
+        int Return_Passengers_Booked();
+
+        // Print Useful info about flight
+        void Print_Flight_Data();
+
     private:
         // Name of Flight
         int flight_num;

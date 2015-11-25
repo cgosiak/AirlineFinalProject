@@ -122,4 +122,17 @@ namespace FinalProject {
     int Flight::Get_Seats_Available() {
         return seats_available;
     }
+
+    int Flight::Return_Passengers_Booked() {
+        return assigned_passengers;
+    }
+
+    void Flight::Print_Flight_Data() {
+        cout << std::endl;
+        cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
+        cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
+        cout << "Date: " << Get_Departure_Date() << std::endl;
+        cout << "Plane: " << std::endl; // need to add plane data
+        cout << "Available Seats: " << seats_available << std::endl;
+    }
 }

@@ -85,66 +85,6 @@ namespace FinalProject {
         }
     }
 
-    bool user_selections() {
-        int usersChoice;
-        cout << "\nOptions:\n" <<
-        "1 - Add Flight         |   2 - Add Plane\n" <<
-        "3 - Select Flight      |   4 - Print All Passengers\n" <<
-        "5 - Print All Flights  |   6 - Print All Planes\n" <<
-        "7 - Close/End Program\n" <<
-        "Your Choice [Enter]: ";
-        cin >> usersChoice;
-        cout << std::endl;
-        switch (usersChoice) {
-            case 1:
-                selected_flight;
-                break;
-            case 2:
-                airport.AddPlane();
-                break;
-            case 3:
-                if (airport.Get_Number_of_Flights() > 0) {
-                    airport.Select_New_Flight(); // This will have to be a loop to do user options local to the flight
-                }
-                else {
-                    cout << "\nNo Flights Exist! Add a Flight First!" << std::endl;
-                }
-                break;
-            case 4:
-                if (airport.Get_Number_of_Flights() > 0) {
-                    airport.Print_All_Passengers();
-                }
-                else {
-                    cout << "\nNo Passengers Exist! Add a Flight First!" << std::endl;
-                }
-                break;
-            case 5:
-                if (airport.Get_Number_of_Flights() > 0) {
-                    airport.Print_Upcoming_Flights();
-                }
-                else {
-                    cout << "\nNo Flights Exist!" << std::endl;
-                }
-                break;
-            case 6:
-                if (airport.Get_Number_of_Planes() > 0) {
-                    airport.Print_Upcoming_Flights();
-                }
-                else {
-                    cout << "\nNo Planes Exist!" << std::endl;
-                }
-                break;
-            case 7:
-                airport.CleanUp();
-                cout << "\nHave a nice day!" << std::endl;
-                return false;
-            default:
-                cout << "Not a valid Option!" << std::endl;
-                break;
-        }
-        return true;
-    }
-
     void Airport::Select_New_Flight() {
         // Format Space
         cout << std::endl;
@@ -179,5 +119,48 @@ namespace FinalProject {
 
     int Airport::Get_Number_of_Planes() {
         return current_plane_amount;
+    }
+
+    bool Airport::user_selections() {
+        int usersChoice;
+        cout << "\nOptions:\n" <<
+        "1 - Add Passenger to Flight |   2 - Print Passengers On Flight\n" <<
+        "3 - Assign  Plane to Flight |   4 - Change Flight Departure\n" <<
+        "5 - Delete/Refund Flight    |   6 - Print  Flight Data\n" <<
+        "7 - Return to Main\n" <<
+        "Your Choice [Enter]: ";
+        cin >> usersChoice;
+        cout << std::endl;
+        switch (usersChoice) {
+            case 1:
+                selected_flight->Add_Passenger_To_Flight();
+                break;
+            case 2:
+                if (selected_flight->Return_Passengers_Booked() > 0) {
+                    selected_flight->Print_Passenger_List();
+                }
+                else {
+                    cout << "\nNo Passenger On Flight Yet!" << std::endl;
+                }
+                break;
+            case 3:
+                // Have not implemented yet
+                break;
+            case 4:
+                // Have not implemented yet
+                break;
+            case 5:
+                // Have not implemented yet
+                break;
+            case 6:
+                selected_flight->Print_Flight_Data();
+                break;
+            case 7:
+                return false;
+            default:
+                cout << "Not a valid Option!" << std::endl;
+                break;
+        }
+        return true;
     }
 }
