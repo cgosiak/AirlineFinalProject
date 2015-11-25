@@ -34,13 +34,13 @@ namespace FinalProject {
         current_flights[current_flight_amount-1] = new Flight();
 
         // Print name of the created flight
-        cout << "Flight " << current_flights[current_flight_amount-1]->Get_Flight_Name() << " Created!" << std::endl;
+        cout << "Flight " << current_flights[current_flight_amount-1]->Get_Flight_Num() << " Created!" << std::endl;
     }
 
     void Airport::PrintNamesOfAllFlights() {
         // Print out all the names of all the flights created!
         for (int i = 0; i < current_flight_amount; ++i) {
-            current_flights[i]->Print_Flight_Name();
+            current_flights[i]->Print_Flight_Num();
         }
     }
 

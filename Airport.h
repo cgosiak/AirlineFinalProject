@@ -16,10 +16,10 @@ namespace FinalProject {
         void AddFlight();
         void PrintNamesOfAllFlights();
         void CleanUp();
-
-    private:
         // Pointers to all the flights at the given airport, max 100 right now
         Flight *current_flights[100];
+
+    private:
         // Pointers to all the planes at the given airport, max 100 right now
         Plane *planes_at_airport[100];
         // Pointers to all the passengers at the given airport, max 1000 right now

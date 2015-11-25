@@ -29,4 +29,15 @@ namespace FinalProject {
         cin >> age;
         cout << std::endl;
     }
+
+    std::string Passenger::Get_Name() {
+        std::string full_name;
+
+        full_name = first_name + " " + last_name;
+        return full_name;
+    }
+
+    std::string Passenger::Get_Assigned_Seat() {
+        return seat_assigned;
+    }
 }

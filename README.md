@@ -24,3 +24,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/24/2015 - 5:00  PM)(Caleb G.)
 	Created start of passenger class.
+
+(11/24/2015 - 9:00  PM)(Caleb G.)
+	Did a lot of work on Flight Class, started implementing very simple tests for method implementation. Pointers are working!!!
