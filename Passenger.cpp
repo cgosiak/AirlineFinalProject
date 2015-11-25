@@ -40,4 +40,9 @@ namespace FinalProject {
     std::string Passenger::Get_Assigned_Seat() {
         return seat_assigned;
     }
+
+    void Passenger::Add_To_Flight(Flight* connection) {
+        booked_flights++;
+        on_these_flights[booked_flights-1] = connection;
+    }
 }

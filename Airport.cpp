@@ -19,13 +19,6 @@ namespace FinalProject {
 
     Airport::Airport() {
         cout << "Opening Airport!" << std::endl;
-
-        // Need at least 1 flight
-        if (current_flight_amount == 0) {
-            AddFlight();
-        }
-
-        Select_Flight(0); // Select the first flight as the current flight always! this is a design decision
     }
 
     void Airport::AddFlight() {
@@ -78,12 +71,78 @@ namespace FinalProject {
         if ((index_of_flight < current_flight_amount) && (index_of_flight >= 0)) {
             selected_flight = current_flights[index_of_flight];
             cout << "SUCCESS: FLIGHT " << selected_flight->Get_Flight_Num() << " TO " << selected_flight->Get_Destination() << " SELECTED." << std::endl;
+
+            // This will be the main loop for doing all user options with a flight!
+            while (user_selections()) {
+                // Do nothing in here! Could Possibly Update to external files here though...
+            }
+
             return true;
         }
         else {
             cout << "ERROR: CANNOT SELECT NON-EXISTENT FLIGHT!!!" << std::endl;
             return false;
         }
+    }
+
+    bool user_selections() {
+        int usersChoice;
+        cout << "\nOptions:\n" <<
+        "1 - Add Flight         |   2 - Add Plane\n" <<
+        "3 - Select Flight      |   4 - Print All Passengers\n" <<
+        "5 - Print All Flights  |   6 - Print All Planes\n" <<
+        "7 - Close/End Program\n" <<
+        "Your Choice [Enter]: ";
+        cin >> usersChoice;
+        cout << std::endl;
+        switch (usersChoice) {
+            case 1:
+                selected_flight;
+                break;
+            case 2:
+                airport.AddPlane();
+                break;
+            case 3:
+                if (airport.Get_Number_of_Flights() > 0) {
+                    airport.Select_New_Flight(); // This will have to be a loop to do user options local to the flight
+                }
+                else {
+                    cout << "\nNo Flights Exist! Add a Flight First!" << std::endl;
+                }
+                break;
+            case 4:
+                if (airport.Get_Number_of_Flights() > 0) {
+                    airport.Print_All_Passengers();
+                }
+                else {
+                    cout << "\nNo Passengers Exist! Add a Flight First!" << std::endl;
+                }
+                break;
+            case 5:
+                if (airport.Get_Number_of_Flights() > 0) {
+                    airport.Print_Upcoming_Flights();
+                }
+                else {
+                    cout << "\nNo Flights Exist!" << std::endl;
+                }
+                break;
+            case 6:
+                if (airport.Get_Number_of_Planes() > 0) {
+                    airport.Print_Upcoming_Flights();
+                }
+                else {
+                    cout << "\nNo Planes Exist!" << std::endl;
+                }
+                break;
+            case 7:
+                airport.CleanUp();
+                cout << "\nHave a nice day!" << std::endl;
+                return false;
+            default:
+                cout << "Not a valid Option!" << std::endl;
+                break;
+        }
+        return true;
     }
 
     void Airport::Select_New_Flight() {
@@ -103,5 +162,22 @@ namespace FinalProject {
         }
 
 
+    }
+
+    void Airport::Print_All_Passengers() {
+        // for loop to go through all flights
+        cout << std::endl << "######################### All Passengers at Airport #########################" << std::endl;
+        for (int i = 0; i < current_flight_amount; ++i) {
+            current_flights[i]->Print_Passenger_List();
+        }
+        cout << std::endl << "#############################################################################" << std::endl;
+    }
+
+    int Airport::Get_Number_of_Flights() {
+        return current_flight_amount;
+    }
+
+    int Airport::Get_Number_of_Planes() {
+        return current_plane_amount;
     }
 }

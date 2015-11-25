@@ -41,6 +41,18 @@ namespace FinalProject {
         // Pointer to current selected flight
         Flight *selected_flight;
 
+        // Print all passengers taking any flight at the airport
+        void Print_All_Passengers();
+
+        // Get Number of Flights
+        int Get_Number_of_Flights();
+
+        // Get Number of Planes
+        int Get_Number_of_Planes();
+
+        // This will be the tool for handling Flight manipulation with the user
+        bool user_selections();
+
     private:
         int current_flight_amount = 0;
         int current_plane_amount = 0;

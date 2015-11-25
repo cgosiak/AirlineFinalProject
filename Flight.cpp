@@ -84,6 +84,9 @@ namespace FinalProject {
         // Add ability to add passenger
         assigned_passengers++;
         passengers[assigned_passengers-1] = new Passenger();
+
+        // Add connection to passenger, of the flight the passenger has booked
+        passengers[assigned_passengers-1]->Add_To_Flight(this);
     }
 
     void Flight::Print_Passenger_List() {
