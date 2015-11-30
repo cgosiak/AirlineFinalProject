@@ -47,15 +47,15 @@ namespace FinalProject {
         for (int i = 0; i < current_flight_amount; ++i) {
             if (i == 0) {
                 cout << "List of Upcoming Flights:" << std::endl;
-                cout << "______________________________________________________________________________" << std::endl;
-                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | OPEN SEATS | ASSIGNED FLIGHT |" << std::endl;
-                cout << "------------------------------------------------------------------------------" << std::endl;
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(16) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
-                cout << "------------------------------------------------------------------------------" << std::endl;
+                cout << "_____________________________________________________________________________" << std::endl;
+                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | OPEN SEATS | ASSIGNED PLANE |" << std::endl;
+                cout << "-----------------------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
+                cout << "-----------------------------------------------------------------------------" << std::endl;
             }
             else {
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(16) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
-                cout << "------------------------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
+                cout << "-----------------------------------------------------------------------------" << std::endl;
             }
         }
     }
@@ -380,6 +380,12 @@ namespace FinalProject {
                     }
                 }
                 // Everything read, create flight
+                for (int j = 0; j < current_flight_amount; ++j) {
+                    if (current_flights[j]->Get_Flight_Num() == flight_assigned) {
+                        current_flights[j]->Add_Passenger_To_Flight(first_nam,last_nam,age_used,row_assigned,seat_assigned);
+                        current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned-1),(seat_assigned-1),current_flights[j]->most_recently_added);
+                    }
+                }
                 cout << "Passenger " << first_nam << " " << last_nam << " assigned seat Row " << row_assigned << " Seat " << seat_assigned << " On Flight " << flight_assigned << "." << std::endl;
             }
             myFile.close();
@@ -455,6 +461,7 @@ namespace FinalProject {
                         }
                     }
                     // Everything read, create plane
+                    planes_at_airport[i] = new Plane(flight_num,rows_read,seats_read);
                     cout << "Plane " << flight_num << " created with " << rows_read << " rows and " << seats_read << " seats per row." << std::endl;
                     myFile.close();
                 }
@@ -526,6 +533,17 @@ namespace FinalProject {
                         }
                     }
                     // Everything read, create flight
+                    current_flights[i] = new Flight(flight_num,destination,depart_year,depart_month,depart_day,plane);
+                    // Flight is already assigned to a plane in external data
+                    if (plane > 0) {
+                        for (int j = 0; j < current_plane_amount; ++j) {
+                            int test_plane_num = planes_at_airport[j]->Get_Flight_Num();
+                            if (test_plane_num == plane) {
+                                // Assign plane object to flight
+                                current_flights[i]->Assign_Plane(planes_at_airport[j]);
+                            }
+                        }
+                    }
                     cout << "Flight " << flight_num << " created with destination " << destination << " departing " << depart_month << "-" << depart_day << "-" << depart_year << "." << std::endl;
                     myFile.close();
                 }

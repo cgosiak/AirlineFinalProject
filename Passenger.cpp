@@ -58,4 +58,12 @@ namespace FinalProject {
         row = row_used;
         seat = seat_used;
     }
+
+    Passenger::Passenger(std::string fName, std::string lName, int age_used, int row_used, int seat_used) {
+        first_name = fName;
+        last_name = lName;
+        age = age_used;
+        row = row_used;
+        seat = seat_used;
+    }
 }

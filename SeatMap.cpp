@@ -183,4 +183,10 @@ namespace FinalProject {
     Seat SeatMap::Return_Seat_Object(int row, int seat) {
         return *Seats[row][seat];
     }
+
+    void SeatMap::Reserve_From_File(int row, int seat, Passenger *passenger_from_file) {
+        Seats[row][seat]->Reserve_Seat();
+        Seats[row][seat]->Assign_Passenger(passenger_from_file);
+        last_assigned_seat = Seats[row][seat];
+    }
 }

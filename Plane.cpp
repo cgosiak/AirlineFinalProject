@@ -321,4 +321,20 @@ namespace FinalProject {
             return false;
         }
     }
+
+    Plane::Plane(int plane_num_used, int rows, int seats) {
+        plane_rows = rows;
+        plane_seats_per_row = seats;
+        printableDepartYear = departYear + 1900;
+        flightNumber = plane_num_used;
+
+        Plane::Generate_seat_map();
+        Plane::Get_current_time();
+        Plane::Get_days_to_departure();
+    }
+
+    void Plane::Reserve_From_External_File(int row, int seat, Passenger *passenger_from_file) {
+        plane_seat_map->Reserve_From_File(row,seat,passenger_from_file);
+        passenger_from_file->Assign_Seat(plane_seat_map->last_assigned_seat);
+    }
 }

@@ -3,4 +3,4 @@ destination=DFW
 departure_year=2015
 departure_month=12
 departure_day=06
-assigned_plane=4713
+assigned_plane=0

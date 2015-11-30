@@ -17,6 +17,8 @@ namespace FinalProject {
         Plane(int rows, int seats);
         // Overloaded Method for handling the creation of a plane object from a non-text based file (i.e. debugging interaction)
         Plane();
+        // Overloaded Method to control creation of planes from external text files
+        Plane(int plane_num_used, int rows, int seats);
 
         // This will show a printout of useful plane data to the user
         void Show_plane_data();
@@ -102,6 +104,9 @@ namespace FinalProject {
 
         // Reserving a seat, with a passenger
         bool Reserve_Seat_For_Passenger(int row, int seat, Passenger *reserving_passenger);
+
+        // Reserve from external file
+        void Reserve_From_External_File(int row, int seat, Passenger *passenger_from_file);
 
 
     private:

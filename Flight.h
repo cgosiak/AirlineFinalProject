@@ -14,6 +14,8 @@ namespace FinalProject {
     public:
         // Default Constructor
         Flight();
+        // Overloaded to read from input file
+        Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int assigned_plane_used);
 
         // Print the Flight name
         void Print_Flight_Num();
@@ -32,6 +34,8 @@ namespace FinalProject {
 
         // Add Passenger to Flight
         void Add_Passenger_To_Flight();
+        // Overloaded to handle input from external file
+        void Add_Passenger_To_Flight(std::string fName, std::string lName, int age_used, int row_used, int seat_used);
 
         // Print Names of all passengers
         void Print_Passenger_List();
@@ -63,7 +67,7 @@ namespace FinalProject {
         // Pointer to Plane Object
         Plane *assigned_plane;
 
-        // Last Created PAssenger
+        // Last Created Passenger
         Passenger *most_recently_added;
 
     private:

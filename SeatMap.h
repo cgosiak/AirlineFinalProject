@@ -45,6 +45,9 @@ namespace FinalProject {
         // Last Assigned Seat Object
         Seat *last_assigned_seat;
 
+        // Reserve seat from external file
+        void Reserve_From_File(int row, int seat, Passenger *passenger_from_file);
+
 
     private:
         // These are virtually constant, as they are private data member that do not include a method for changing them

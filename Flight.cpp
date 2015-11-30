@@ -191,4 +191,23 @@ namespace FinalProject {
     bool Flight::Is_Assigned() {
         return plane_assigned;
     }
+
+    Flight::Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int assigned_plane_used) {
+        flight_num = flight_num_used;
+        destination = dest;
+        year = dep_yr;
+        month = dep_mt;
+        day = dep_dy;
+    }
+
+    void Flight::Add_Passenger_To_Flight(std::string fName, std::string lName, int age_used, int row_used, int seat_used) {
+        assigned_passengers++;
+        passengers[assigned_passengers-1] = new Passenger(fName,lName,age_used,row_used,seat_used);
+
+        // Set current passenger as most recently added
+        most_recently_added = passengers[assigned_passengers-1];
+
+        // Add connection to passenger, of the flight the passenger has booked
+        passengers[assigned_passengers-1]->Add_To_Flight(this);
+    }
 }

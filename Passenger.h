@@ -12,6 +12,8 @@ namespace FinalProject {
     class Passenger {
         public:
             Passenger();
+            // Overloaded constructor to read form text file
+            Passenger(std::string fName, std::string lName, int age_used, int row_used, int seat_used);
 
             // Get Full Name
             std::string Get_Name();
