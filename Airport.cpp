@@ -300,6 +300,11 @@ namespace FinalProject {
             else {
                 cout << "ERROR: Broken Reading Saved Passengers!" << std::endl;
             }
+            if (Read_External_Planes()) {
+            }
+            else {
+                cout << "ERROR: Broken Reading Saved Planes!" << std::endl;
+            }
         }
         else {
             cout << "ERROR: Broken Reading Saved Amounts of Flights and Planes!" << std::endl;
@@ -327,6 +332,7 @@ namespace FinalProject {
                     cout << seglist[i] << std::endl;
                 }
             }
+            myFile.close();
             return true;
         }
         else {
@@ -356,10 +362,61 @@ namespace FinalProject {
             }
             current_plane_amount = num_planes;
             current_flight_amount = num_flights;
+            myFile.close();
             return true;
         }
         else {
             return false;
+        }
+    }
+
+    bool Airport::Read_External_Planes() {
+        // Setup Plane Options
+        int flight_num;
+        int rows_read;
+        int seats_read;
+
+        // input file
+        if (current_plane_amount > 0) {
+            // Generate Files
+            for (int i = 0; i < current_plane_amount; ++i) {
+                std::string file_name;
+                file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/saved_plane_" + std::to_string(i+1) + ".txt";
+
+                std::ifstream myFile (file_name.c_str());
+
+                if (myFile.is_open()) {
+                    std::string line_read;
+                    cout << "READING FILE: " << file_name << std::endl;
+                    while (myFile >> line_read) {
+                        if (line_read.find("plane_num") != std::string::npos) {
+                            line_read.erase(0,10);
+                            flight_num = std::stoi(line_read);
+                        }
+                        else {
+                            if (line_read.find("rows") != std::string::npos) {
+                                line_read.erase(0, 5);
+                                rows_read = std::stoi(line_read);
+                            }
+                            else {
+                                line_read.erase(0, 14);
+                                seats_read = std::stoi(line_read);
+                            }
+                        }
+                    }
+                    // Everything read, create plane
+                    cout << "Plane " << flight_num << " created with " << rows_read << " rows and " << seats_read << " seats per row." << std::endl;
+                    myFile.close();
+                }
+                else {
+                    cout << "ERROR: Cannot Read File_ " << file_name << std::endl;
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return true;
         }
     }
 }
