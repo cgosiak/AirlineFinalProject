@@ -28,70 +28,25 @@ namespace FinalProject {
     }
 
     Plane::Plane() {
-        int rows;
-        int seats;
-        UsefulFunctions useThis;
-        cout << "Would You Like to Read From an External File?" << std::endl;
-        if (useThis.Yes_No_Question()) {
-            std::string nameOfFIle;
-            cout << "What is the name of the file your would like to read from? (ex. plane.txt): ";
-            cin >> nameOfFIle;
+        cout << "Let's Setup Your New Plane!" << std::endl;
+        cout << "----------------------------" << std::endl;
+        cout << "Enter Plane Number: ";
+        cin >> flightNumber;
+        cout << std::endl;
 
-            std::ifstream myInputFile(nameOfFIle.c_str());
+        cout << "Please Enter the Amount of Rows for Your Plane: ";
+        cin >> plane_rows;
+        cout << std::endl;
 
-            int currentIter = 0;
-            if (myInputFile.is_open()) {
-                // Loop Through to EOF
-                std::string currentInput;
-                while (myInputFile >> currentInput) {
-                    // Gets numbers of rows
-                    if (currentIter == 0) {
-                        rows = std::stoi(currentInput);
-                    }
-                    else {
-                        // Get Seats per row
-                        if (currentIter == 1) {
-                            seats = std::stoi(currentInput);
+        cout << "Please Enter the Amount of Seats Per Row for Your Plane: ";
+        cin >> plane_seats_per_row;
+        cout << std::endl;
 
-                            // Setup Everything before file reserves seats programatically
-                            plane_rows = rows;
-                            plane_seats_per_row = seats;
+        printableDepartYear = departYear + 1900;
 
-                            printableDepartYear = departYear + 1900;
-
-                            Plane::Generate_seat_map();
-                            Plane::Get_current_time();
-                            Plane::Get_days_to_departure();
-                        }
-                        else {
-                            // Handles all reserved seats
-                            Plane::Reserve_seat(currentInput);
-                        }
-                    }
-                    currentIter++;
-                }
-                myInputFile.close();
-            }
-            else {
-                cout << "\nERROR: Cannot open file!" << std::endl;
-            }
-        }
-        else {
-            cout << "Please Enter the Amount of Rows for Your Plane: ";
-            cin >> rows;
-
-            cout << "Please Enter the Amount of Seats Per Row for Your Plane: ";
-            cin >> seats;
-
-            plane_rows = rows;
-            plane_seats_per_row = seats;
-
-            printableDepartYear = departYear + 1900;
-
-            Plane::Generate_seat_map();
-            Plane::Get_current_time();
-            Plane::Get_days_to_departure();
-        }
+        Plane::Generate_seat_map();
+        Plane::Get_current_time();
+        Plane::Get_days_to_departure();
     }
 
     void Plane::Show_plane_data() {
@@ -252,7 +207,7 @@ namespace FinalProject {
         cout << "\nOptions:\n" <<
                 "1 - Print Seat Mapping   |   2 - Display Flight Data\n" <<
                 "3 - Seat  Reserve Tool   |   4 - Change  Flight Options\n" <<
-                "5 - Cancel Reservation   |   6 - Close/End Program\n" <<
+                "5 - Cancel Reservation   |   6 - Back To Main\n" <<
                 "Your Choice [Enter]: ";
         cin >> usersChoice;
         cout << std::endl;
@@ -329,4 +284,41 @@ namespace FinalProject {
         plane_seat_map->WriteDataToFile();
     }
 
+    int Plane::Get_Flight_Num() {
+        return flightNumber;
+    }
+
+    int Plane::Get_Rows() {
+        return plane_rows;
+    }
+
+    int Plane::Get_Seats_Per_Row() {
+        return plane_seats_per_row;
+    }
+
+    bool Plane::Is_Plane_Assigned_To_Flight() {
+        return assigned_to_flight;
+    }
+
+    int Plane::Get_Max_Seats() {
+        return (plane_rows*plane_seats_per_row);
+    }
+
+    void Plane::Take_Plane() {
+        assigned_to_flight = true;
+    }
+
+    void Plane::Return_Plane() {
+        assigned_to_flight = false;
+    }
+
+    bool Plane::Reserve_Seat_For_Passenger(int row, int seat, Passenger *reserving_passenger) {
+        if (plane_seat_map->Reserve_Seat(row, seat, reserving_passenger)) {
+            reserving_passenger->Assign_Seat(plane_seat_map->last_assigned_seat);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

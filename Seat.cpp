@@ -217,4 +217,8 @@ namespace FinalProject {
         Seat::Get_cost_of_seat();
         Seat::Print_seat_data();
     }
+
+    void Seat::Assign_Passenger(Passenger *input_pass) {
+        assigned_passenger = input_pass;
+    }
 }

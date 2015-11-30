@@ -45,4 +45,10 @@ namespace FinalProject {
         booked_flights++;
         on_these_flights[booked_flights-1] = connection;
     }
+
+    bool Passenger::Assign_Seat(Seat *input_seat) {
+        assigned_seat = input_seat;
+        assigned_to_seat = true;
+        return assigned_to_seat;
+    }
 }

@@ -41,8 +41,14 @@ namespace FinalProject {
         // Pointer to current selected flight
         Flight *selected_flight;
 
+        // Pointer to current selected plane
+        Plane *selected_plane;
+
         // Print all passengers taking any flight at the airport
         void Print_All_Passengers();
+
+        // Print all available planes
+        void Print_All_Planes();
 
         // Get Number of Flights
         int Get_Number_of_Flights();
@@ -53,9 +59,29 @@ namespace FinalProject {
         // This will be the tool for handling Flight manipulation with the user
         bool user_selections();
 
+        // Select New Plane
+        void Select_New_Plane();
+
+        // Assign Selected Plane
+        bool Select_Plane(int index_of_plane);
+
+        // Print Seating Map
+        void Print_Seat_Map();
+
+        // Select Plane for Plane Options
+        void Select_Plane_For_Options();
+
+        // Show plane options
+        bool Plane_Options(int index_to_use);
+
+
     private:
         int current_flight_amount = 0;
         int current_plane_amount = 0;
+
+        // Save Index Yo!
+        int index_of_saved_flight;
+        int index_of_saved_plane;
     };
 }
 

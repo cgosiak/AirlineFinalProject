@@ -59,17 +59,19 @@ namespace FinalProject {
                 // This will need to be replaced
                 // Seats[rowNum][seatNum]->Assign_seat_type(1);
 
-                // Only Doing this for Testing for Program 3
-                if (rowNum == 0) {
+                // First Class is always the first 3 Rows of a plane!
+                if (rowNum >= 0 && rowNum <= 3) {
                     // First Class
                     Seats[rowNum][seatNum]->Assign_seat_type(1);
                 }
                 else {
-                    if (rowNum == 1) {
+                    // Rows 4-7 are always Economy Plus for the sake of the assignment
+                    if (rowNum >= 4 && rowNum <= 7) {
                         // Economy Plus
                         Seats[rowNum][seatNum]->Assign_seat_type(3);
                     }
                     else {
+                        // The rest of the rows will always be economy
                         // Economy
                         Seats[rowNum][seatNum]->Assign_seat_type(2);
                     }
@@ -154,5 +156,30 @@ namespace FinalProject {
     double SeatMap::PrintSeatData(int row, int seat, int daysToFlight, int newDist) {
         Seats[row][seat]->Program3(daysToFlight,newDist);
         return Seats[row][seat]->Get_cost_of_seat();
+    }
+
+    bool SeatMap::Reserve_Seat(int row, int seat, Passenger *reserving_passenger) {
+        UsefulFunctions useThis;
+
+        Seats[row][seat]->Print_seat_data();
+        if (!Seats[row][seat]->Seat_reserved()) {
+            cout << "\nWould you like to reserve this seat?" << std::endl;
+            if (useThis.Yes_No_Question()) {
+                Seats[row][seat]->Reserve_Seat();
+                Seats[row][seat]->Assign_Passenger(reserving_passenger);
+                last_assigned_seat = Seats[row][seat];
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    Seat SeatMap::Return_Seat_Object(int row, int seat) {
+        return *Seats[row][seat];
     }
 }

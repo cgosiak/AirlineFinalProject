@@ -43,15 +43,15 @@ namespace FinalProject {
         for (int i = 0; i < current_flight_amount; ++i) {
             if (i == 0) {
                 cout << "List of Upcoming Flights:" << std::endl;
-                cout << "____________________________________________________________" << std::endl;
-                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | OPEN SEATS |" << std::endl;
-                cout << "------------------------------------------------------------" << std::endl;
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::endl;
-                cout << "------------------------------------------------------------" << std::endl;
+                cout << "______________________________________________________________________________" << std::endl;
+                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | OPEN SEATS | ASSIGNED FLIGHT |" << std::endl;
+                cout << "------------------------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(16) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
+                cout << "------------------------------------------------------------------------------" << std::endl;
             }
             else {
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::endl;
-                cout << "------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(16) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
+                cout << "------------------------------------------------------------------------------" << std::endl;
             }
         }
     }
@@ -100,8 +100,6 @@ namespace FinalProject {
             // Try again
             Select_New_Flight();
         }
-
-
     }
 
     void Airport::Print_All_Passengers() {
@@ -127,13 +125,41 @@ namespace FinalProject {
         "1 - Add Passenger to Flight |   2 - Print Passengers On Flight\n" <<
         "3 - Assign  Plane to Flight |   4 - Change Flight Departure\n" <<
         "5 - Delete/Refund Flight    |   6 - Print  Flight Data\n" <<
-        "7 - Return to Main\n" <<
+        "7 - Return Reservation      |   8 - Return To Main\n" <<
         "Your Choice [Enter]: ";
         cin >> usersChoice;
         cout << std::endl;
         switch (usersChoice) {
             case 1:
-                selected_flight->Add_Passenger_To_Flight();
+                if (selected_flight->Is_Assigned()) {
+                    selected_flight->Add_Passenger_To_Flight();
+
+                    // Print Seat Mapping Quick
+                    selected_flight->assigned_plane->Print_seat_map();
+
+                    // Assign Seat
+                    int row_user;
+                    int seat_user;
+
+                    std::string userSeat;
+
+                    cout << "Row for Reservation: ";
+                    cin >> row_user;
+
+                    cout << "Seat for Reservation: ";
+                    cin >> userSeat;
+
+                    FinalProject::UsefulFunctions useThis;
+
+                    seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
+                    row_user--;
+
+                    selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user, selected_flight->most_recently_added);
+                }
+                else {
+                    cout << "Plane Not Yet Assigned to Flight! Cannot Add Passengers..." << std::endl;
+                }
+
                 break;
             case 2:
                 if (selected_flight->Return_Passengers_Booked() > 0) {
@@ -144,23 +170,120 @@ namespace FinalProject {
                 }
                 break;
             case 3:
-                // Have not implemented yet
+                if (current_plane_amount > 0) {
+                    Select_New_Plane();
+                    selected_flight->Assign_Plane(selected_plane);
+                }
+                else {
+                    cout << "\nNo Planes Exist Yet!" << std::endl;
+                    return false;
+                }
                 break;
             case 4:
                 // Have not implemented yet
+                cout << "Not Yet Implemented! Under Construction!" << std::endl;
                 break;
             case 5:
                 // Have not implemented yet
+                cout << "Not Yet Implemented! Under Construction!" << std::endl;
                 break;
             case 6:
                 selected_flight->Print_Flight_Data();
+                Print_Seat_Map();
                 break;
             case 7:
+                break;
+            case 8:
                 return false;
             default:
                 cout << "Not a valid Option!" << std::endl;
                 break;
         }
         return true;
+    }
+
+    void Airport::Print_All_Planes() {
+        for (int i = 0; i < current_plane_amount; ++i) {
+            if (i == 0) {
+                cout << "List of Available Planes:" << std::endl;
+                cout << "_____________________________________________________" << std::endl;
+                cout << "| NUM | PLANE NUMBER | ROWS | SEATS PER ROW | TAKEN |" << std::endl;
+                cout << "-----------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(12) << planes_at_airport[i]->Get_Flight_Num() << " | " << std::setw(4) << planes_at_airport[i]->Get_Rows() << " |" << std::setw(14) << planes_at_airport[i]->Get_Seats_Per_Row() << " |"  << std::setw(6) << planes_at_airport[i]->Is_Plane_Assigned_To_Flight() << " |"  << std::endl;
+                cout << "-----------------------------------------------------" << std::endl;
+            }
+            else {
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(12) << planes_at_airport[i]->Get_Flight_Num() << " | " << std::setw(4) << planes_at_airport[i]->Get_Rows() << " |" << std::setw(14) << planes_at_airport[i]->Get_Seats_Per_Row() << " |"  << std::setw(6) << planes_at_airport[i]->Is_Plane_Assigned_To_Flight() << " |"  << std::endl;
+                cout << "-----------------------------------------------------" << std::endl;
+            }
+        }
+    }
+
+    void Airport::Select_New_Plane() {
+        // Format Space
+        cout << std::endl;
+
+        // Print all available flights
+        Print_All_Planes();
+
+        int selection = 1; // This will be the answer the user chooses
+        cout << "Enter the \"NUM\" value of the plane you would like to choose: ";
+        cin >> selection;
+
+        if (!Select_Plane(selection-1)) {
+            // Try again
+            Select_New_Plane();
+        }
+    }
+
+    bool Airport::Select_Plane(int index_of_plane) {
+        if ((index_of_plane < current_plane_amount) && (index_of_plane >= 0)) {
+            selected_plane = planes_at_airport[index_of_plane];
+            cout << "SUCCESS: FLIGHT " << selected_plane->Get_Flight_Num() << " SELECTED." << std::endl;
+
+            return true;
+        }
+        else {
+            cout << "ERROR: CANNOT SELECT NON-EXISTENT PLANE!!!" << std::endl;
+            return false;
+        }
+    }
+
+    void Airport::Print_Seat_Map() {
+        if (selected_flight->Is_Assigned()) {
+            selected_plane->Print_seat_map();
+        }
+    }
+
+    void Airport::Select_Plane_For_Options() {
+        // Format Space
+        cout << std::endl;
+
+        // Print all available flights
+        Print_All_Planes();
+
+        int selection = 1; // This will be the answer the user chooses
+        cout << "Enter the \"NUM\" value of the plane you would like to choose: ";
+        cin >> selection;
+
+        if (!Plane_Options(selection-1)) {
+            // Try again
+            Select_Plane_For_Options();
+        }
+    }
+
+    bool Airport::Plane_Options(int index_to_use) {
+        if ((index_to_use < current_plane_amount) && (index_to_use >= 0)) {
+            selected_plane = planes_at_airport[index_to_use];
+            cout << "SUCCESS: FLIGHT " << selected_plane->Get_Flight_Num() << " SELECTED." << std::endl;
+            while (selected_plane->User_selection_tool()) {
+                // Do nothing
+            }
+            return true;
+        }
+        else {
+            cout << "ERROR: CANNOT SELECT NON-EXISTENT PLANE!!!" << std::endl;
+            return false;
+        }
     }
 }

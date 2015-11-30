@@ -5,6 +5,8 @@
 #ifndef MYPROGRAM3_SEAT_H
 #define MYPROGRAM3_SEAT_H
 
+#include "Passenger.h"
+
 namespace FinalProject {
     class Seat {
     public:
@@ -41,6 +43,9 @@ namespace FinalProject {
         // Sets days to flight
         void Set_Days_to_Flight(int newDays);
 
+        // Set Assigned Passenger
+        void Assign_Passenger(Passenger *input_pass);
+
 
 
         // Get Seat Letter
@@ -59,6 +64,7 @@ namespace FinalProject {
         int daysToFlight = 0;
         double seatFees = 0.00;
         std::string seatingType = "Unknown";
+        Passenger *assigned_passenger;
     };
 }
 

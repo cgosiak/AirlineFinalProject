@@ -6,6 +6,7 @@
 #define MYPROGRAM3_SEATMAP_H
 
 #include "Seat.h"
+#include "Passenger.h"
 
 namespace FinalProject {
     class SeatMap {
@@ -23,6 +24,9 @@ namespace FinalProject {
         // Reservation of a Single Seat
         void Reserve_seat(int row, int seat, bool fromInputFile=false);
 
+        // Reserving a seat, with a passenger
+        bool Reserve_Seat(int row, int seat, Passenger *reserving_passenger);
+
         // Return Seat
         void Return_seat(int row, int seat);
 
@@ -34,6 +38,12 @@ namespace FinalProject {
 
         // Print Seat Data for Program 3
         double PrintSeatData(int row, int seat, int daysToFlight, int newDist);
+
+        // Return Seat Object Pointer
+        Seat Return_Seat_Object(int row, int seat);
+
+        // Last Assigned Seat Object
+        Seat *last_assigned_seat;
 
 
     private:

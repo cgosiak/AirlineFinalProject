@@ -25,7 +25,7 @@ bool user_selections(FinalProject::Airport& airport) {
     "1 - Add Flight         |   2 - Add Plane\n" <<
     "3 - Select Flight      |   4 - Print All Passengers\n" <<
     "5 - Print All Flights  |   6 - Print All Planes\n" <<
-    "7 - Close/End Program\n" <<
+    "7 - Select Plane       |   8 - Close/End Program\n" <<
     "Your Choice [Enter]: ";
     cin >> usersChoice;
     cout << std::endl;
@@ -62,13 +62,21 @@ bool user_selections(FinalProject::Airport& airport) {
             break;
         case 6:
             if (airport.Get_Number_of_Planes() > 0) {
-                airport.Print_Upcoming_Flights();
+                airport.Print_All_Planes();
             }
             else {
                 cout << "\nNo Planes Exist!" << std::endl;
             }
             break;
         case 7:
+            if (airport.Get_Number_of_Planes() > 0) {
+                airport.Select_Plane_For_Options();
+            }
+            else {
+                cout << "\nNo Planes Exist!" << std::endl;
+            }
+            break;
+        case 8:
             airport.CleanUp();
             cout << "\nHave a nice day!" << std::endl;
             return false;

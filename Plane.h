@@ -6,6 +6,7 @@
 #define MYPROGRAM3_PLANE_H
 
 #include "SeatMap.h"
+#include "Seat.h"
 #include <ctime>
 
 namespace FinalProject {
@@ -78,12 +79,39 @@ namespace FinalProject {
         // Write to External File
         void WriteToExternal();
 
+        // Get the flight number
+        int Get_Flight_Num();
+
+        // Get Rows
+        int Get_Rows();
+
+        // Get Seats Per Row
+        int Get_Seats_Per_Row();
+
+        // Is the plane assigned
+        bool Is_Plane_Assigned_To_Flight();
+
+        // Set Max Available Seats
+        int Get_Max_Seats();
+
+        // Plane has been assigned
+        void Take_Plane();
+
+        // Plane is no longer assigned
+        void Return_Plane();
+
+        // Reserving a seat, with a passenger
+        bool Reserve_Seat_For_Passenger(int row, int seat, Passenger *reserving_passenger);
+
 
     private:
         int flightNumber = 456;
         std::string airLineName = "Delta";
         std::string leavingAirport = "MSP";
         std::string destinationAirport = "DFW";
+
+        // Bool to see if plane has been assigned to a flight
+        bool assigned_to_flight = false;
 
         // These are virtually constant, as they are private data member that do not include a method for changing them
         int plane_rows;

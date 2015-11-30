@@ -51,9 +51,27 @@ namespace FinalProject {
         // Print Useful info about flight
         void Print_Flight_Data();
 
+        // Assign plane to flight
+        void Assign_Plane(Plane *use_this_plane);
+
+        // Return The Plane Associated with a flight
+        int Get_Plane_Num();
+
+        // Is plane assigned to flight
+        bool Is_Assigned();
+
+        // Pointer to Plane Object
+        Plane *assigned_plane;
+
+        // Last Created PAssenger
+        Passenger *most_recently_added;
+
     private:
         // Name of Flight
         int flight_num;
+
+        // Bool to check if plane has been assigned
+        bool plane_assigned = false;
 
         // Departure Airport
         std::string departure = "MSP";
@@ -69,12 +87,6 @@ namespace FinalProject {
 
         // Days to flight
         int days_to_flight;
-
-        // Plane set
-        bool plane_set = false;
-
-        // Pointer to Plane Object
-        Plane *assigned_plane;
 
         // Seatmapping for Flight
         SeatMap *flight_seating;

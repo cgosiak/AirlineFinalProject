@@ -39,10 +39,6 @@ namespace FinalProject {
         cout << std::endl;
 
         cout << std::endl;
-
-        // Call functions to complete setup of flight
-        // Update_Days_To_Flight();
-        // Assign_New_Plane();
     }
 
     void Flight::Print_Flight_Num() {
@@ -62,9 +58,9 @@ namespace FinalProject {
     }
 
     void Flight::Assign_New_Plane() {
-        if (plane_set) {
+        if (plane_assigned) {
             assigned_plane = new Plane();
-            plane_set = true;
+            plane_assigned = true;
         }
         else {
             // Bring up options to change to other available planes, or create a new one
@@ -84,6 +80,9 @@ namespace FinalProject {
         // Add ability to add passenger
         assigned_passengers++;
         passengers[assigned_passengers-1] = new Passenger();
+
+        // Set current passenger as most recently added
+        most_recently_added = passengers[assigned_passengers-1];
 
         // Add connection to passenger, of the flight the passenger has booked
         passengers[assigned_passengers-1]->Add_To_Flight(this);
@@ -128,11 +127,43 @@ namespace FinalProject {
     }
 
     void Flight::Print_Flight_Data() {
-        cout << std::endl;
-        cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
-        cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
-        cout << "Date: " << Get_Departure_Date() << std::endl;
-        cout << "Plane: " << std::endl; // need to add plane data
-        cout << "Available Seats: " << seats_available << std::endl;
+        if (plane_assigned) {
+            seats_available = assigned_plane->Get_Max_Seats() - assigned_passengers;
+            cout << std::endl;
+            cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
+            cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
+            cout << "Date: " << Get_Departure_Date() << std::endl;
+            cout << "Plane: " << assigned_plane->Get_Flight_Num() << std::endl; // need to add plane data
+            cout << "Available Seats: " << seats_available << std::endl;
+        }
+        else {
+            cout << std::endl;
+            cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
+            cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
+            cout << "Date: " << Get_Departure_Date() << std::endl;
+            cout << "Plane: Not Set"  << std::endl; // need to add plane data
+            cout << "Available Seats: 0" << std::endl;
+        }
+    }
+
+    void Flight::Assign_Plane(Plane *use_this_plane) {
+        assigned_plane = use_this_plane;
+        cout << "Assigned Plane " << assigned_plane->Get_Flight_Num() << " To Flight " << flight_num << std::endl;
+        seats_available = (assigned_plane->Get_Max_Seats() - assigned_passengers);
+        plane_assigned = true;
+        assigned_plane->Take_Plane();
+    }
+
+    int Flight::Get_Plane_Num() {
+        if (plane_assigned) {
+            return assigned_plane->Get_Flight_Num();
+        }
+        else {
+            return 0;
+        }
+    }
+
+    bool Flight::Is_Assigned() {
+        return plane_assigned;
     }
 }
