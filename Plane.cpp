@@ -205,9 +205,8 @@ namespace FinalProject {
     bool Plane::User_selection_tool() {
         int usersChoice;
         cout << "\nOptions:\n" <<
-                "1 - Print Seat Mapping   |   2 - Display Flight Data\n" <<
-                "3 - Seat  Reserve Tool   |   4 - Change  Flight Options\n" <<
-                "5 - Cancel Reservation   |   6 - Back To Main\n" <<
+                "1 - Print Seat Mapping      |   2 - Display Flight Data\n" <<
+                "3 - Change  Flight Options  |   4 - Back To Main\n" <<
                 "Your Choice [Enter]: ";
         cin >> usersChoice;
         cout << std::endl;
@@ -219,17 +218,9 @@ namespace FinalProject {
                 Plane::Show_plane_data();
                 break;
             case 3:
-                Plane::Reserve_seat();
-                break;
-            case 4:
                 Plane::Change_plane_defaults();
                 break;
-            case 5:
-                Plane::Return_seat();
-                break;
-            case 6:
-                Plane::WriteToExternal();
-                cout << "\nHave a nice day!" << std::endl;
+            case 4:
                 return false;
             default:
                 cout << "Not a valid Option!" << std::endl;

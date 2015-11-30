@@ -3,4 +3,4 @@ destination=WRT
 departure_year=2015
 departure_month=06
 departure_day=29
-assigned_plane=0
+assigned_plane=1111
