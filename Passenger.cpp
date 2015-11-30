@@ -13,6 +13,7 @@ using std::cin;
 
 #include "Passenger.h"
 #include "UsefulFunctions.h"
+#include "Seat.h"
 
 namespace FinalProject {
 
@@ -38,6 +39,7 @@ namespace FinalProject {
     }
 
     std::string Passenger::Get_Assigned_Seat() {
+        seat_assigned = assigned_seat->mySeatName;
         return seat_assigned;
     }
 
@@ -50,5 +52,10 @@ namespace FinalProject {
         assigned_seat = input_seat;
         assigned_to_seat = true;
         return assigned_to_seat;
+    }
+
+    void Passenger::Assign_Row_Seat(int row_used, int seat_used) {
+        row = row_used;
+        seat = seat_used;
     }
 }

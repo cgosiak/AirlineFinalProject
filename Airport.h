@@ -74,6 +74,15 @@ namespace FinalProject {
         // Show plane options
         bool Plane_Options(int index_to_use);
 
+        // Read in External Saved
+        void Read_External_Saved();
+
+        // Read Passenger External
+        bool Read_External_Passengers();
+
+        // Read Amount of Planes/FLight
+        bool Read_External_Amounts();
+
 
     private:
         int current_flight_amount = 0;

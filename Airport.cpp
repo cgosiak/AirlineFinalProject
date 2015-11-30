@@ -6,6 +6,10 @@
 #include <cctype>
 #include <cstdlib>
 #include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
 using std::istream;
 using std::ostream;
 using std::cout;
@@ -283,6 +287,78 @@ namespace FinalProject {
         }
         else {
             cout << "ERROR: CANNOT SELECT NON-EXISTENT PLANE!!!" << std::endl;
+            return false;
+        }
+    }
+
+    void Airport::Read_External_Saved() {
+        // Get Amounts
+        if (Read_External_Amounts()) {
+            // Read External Passengers
+            if (Read_External_Passengers()) {
+            }
+            else {
+                cout << "ERROR: Broken Reading Saved Passengers!" << std::endl;
+            }
+        }
+        else {
+            cout << "ERROR: Broken Reading Saved Amounts of Flights and Planes!" << std::endl;
+        }
+    }
+
+    bool Airport::Read_External_Passengers() {
+        // input file
+        std::ifstream myFile ("/home/caleb/Documents/AirlineFinalProject/SavedData/passengers.txt");
+
+        if (myFile.is_open()) {
+            std::string line_read;
+            while (myFile >> line_read) {
+                std::stringstream line_to_use(line_read);
+                std::string segment;
+                std::vector<std::string> seglist;
+
+                while(std::getline(line_to_use, segment, '$'))
+                {
+                    seglist.push_back(segment);
+                }
+
+                // Print contents of vector
+                for (int i = 0; i < seglist.size(); ++i) {
+                    cout << seglist[i] << std::endl;
+                }
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    bool Airport::Read_External_Amounts() {
+        // input file
+        std::ifstream myFile ("/home/caleb/Documents/AirlineFinalProject/SavedData/planes_and_flights.txt");
+        int num_planes = 0;
+        int num_flights = 0;
+
+        if (myFile.is_open()) {
+            std::string line_read;
+            while (myFile >> line_read) {
+                if (line_read.find("planes") != std::string::npos) {
+                    line_read.erase(0,7);
+                    num_planes = std::stoi(line_read);
+                    cout << num_planes << " PLANES FOUND!" << std::endl;
+                }
+                else {
+                    line_read.erase(0,8);
+                    num_flights = std::stoi(line_read);
+                    cout << num_flights << " FLIGHTS FOUND!" << std::endl;
+                }
+            }
+            current_plane_amount = num_planes;
+            current_flight_amount = num_flights;
+            return true;
+        }
+        else {
             return false;
         }
     }

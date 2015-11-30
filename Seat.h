@@ -46,15 +46,14 @@ namespace FinalProject {
         // Set Assigned Passenger
         void Assign_Passenger(Passenger *input_pass);
 
-
-
         // Get Seat Letter
         // Important for if it it reserved
         std::string Get_seat_letter();
 
+        std::string mySeatName = "Unknown";
+
     private:
         bool isleSeat = false;
-        std::string mySeatName = "Unknown";
         std::string mySeatLetter = "X";
         int seatSpace;
         double endFlightCost;

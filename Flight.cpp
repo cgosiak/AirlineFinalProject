@@ -147,11 +147,36 @@ namespace FinalProject {
     }
 
     void Flight::Assign_Plane(Plane *use_this_plane) {
-        assigned_plane = use_this_plane;
-        cout << "Assigned Plane " << assigned_plane->Get_Flight_Num() << " To Flight " << flight_num << std::endl;
-        seats_available = (assigned_plane->Get_Max_Seats() - assigned_passengers);
-        plane_assigned = true;
-        assigned_plane->Take_Plane();
+        if (!plane_assigned) {
+            assigned_plane = use_this_plane;
+            cout << "Assigned Plane " << assigned_plane->Get_Flight_Num() << " To Flight " << flight_num << std::endl;
+            seats_available = (assigned_plane->Get_Max_Seats() - assigned_passengers);
+            plane_assigned = true;
+            assigned_plane->Take_Plane();
+        }
+        else {
+            // Some constraints, a plane at this point for changing should have identical rows/seats to make sure the swap is taken care of correctly
+            // in the future this would be replaced with an algorithm to assign seat dynamically to a plane of different sizes
+            // but first check if it is already taken
+            if (use_this_plane->Is_Plane_Assigned_To_Flight()) {
+                cout << "ERROR: Plane " << use_this_plane->Get_Flight_Num() << " is already assigned to another flight!" << std::endl;
+            }
+            else {
+                if (assigned_plane->Get_Rows() == use_this_plane->Get_Rows() &&
+                    assigned_plane->Get_Seats_Per_Row() == use_this_plane->Get_Seats_Per_Row()) {
+                    assigned_plane->Return_Plane(); // return the old plane
+                    assigned_plane = use_this_plane;
+                    cout << "Assigned Plane " << assigned_plane->Get_Flight_Num() << " To Flight " << flight_num <<
+                    std::endl;
+                    seats_available = (assigned_plane->Get_Max_Seats() - assigned_passengers);
+                    plane_assigned = true;
+                    assigned_plane->Take_Plane();
+                }
+                else {
+                    cout << "ERROR: Plane " << use_this_plane->Get_Flight_Num() << " is not a valid substitute for plane " << assigned_plane->Get_Flight_Num() << std::endl;
+                }
+            }
+        }
     }
 
     int Flight::Get_Plane_Num() {

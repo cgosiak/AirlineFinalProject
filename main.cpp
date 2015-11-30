@@ -11,6 +11,9 @@ int main() {
 
     Airport myAirport;
 
+    // Read in all externally saved data
+    myAirport.Read_External_Saved();
+
     // Main Airport Loop for User Interaction
     while (user_selections(myAirport)) {
         // Anything in here should more than likely not run

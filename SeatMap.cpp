@@ -167,6 +167,7 @@ namespace FinalProject {
             if (useThis.Yes_No_Question()) {
                 Seats[row][seat]->Reserve_Seat();
                 Seats[row][seat]->Assign_Passenger(reserving_passenger);
+                reserving_passenger->Assign_Row_Seat(row, seat);
                 last_assigned_seat = Seats[row][seat];
                 return true;
             }

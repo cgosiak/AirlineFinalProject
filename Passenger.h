@@ -28,6 +28,9 @@ namespace FinalProject {
             // Set assigned seat from reservation
             bool Assign_Seat(Seat *input_seat);
 
+            // Assign Row and Seat
+            void Assign_Row_Seat(int row_used, int seat_used);
+
         private:
             // Passenger Identifiers
             std::string first_name;
@@ -36,6 +39,8 @@ namespace FinalProject {
 
             // Seat Assigned To
             Seat *assigned_seat;
+            int row;
+            int seat;
 
             // Bool for checking
             bool assigned_to_seat = false;
