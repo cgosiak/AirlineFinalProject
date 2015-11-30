@@ -86,6 +86,9 @@ namespace FinalProject {
         // Read External Planes
         bool Read_External_Planes();
 
+        // Read external flights
+        bool Read_External_Flights();
+
 
     private:
         int current_flight_amount = 0;

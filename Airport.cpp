@@ -294,16 +294,24 @@ namespace FinalProject {
     void Airport::Read_External_Saved() {
         // Get Amounts
         if (Read_External_Amounts()) {
-            // Read External Passengers
-            if (Read_External_Passengers()) {
-            }
-            else {
-                cout << "ERROR: Broken Reading Saved Passengers!" << std::endl;
-            }
             if (Read_External_Planes()) {
             }
             else {
                 cout << "ERROR: Broken Reading Saved Planes!" << std::endl;
+            }
+            if (Read_External_Flights()) {
+            }
+            else {
+                cout << "ERROR: Broken Reading Saved Flights!" << std::endl;
+            }
+            // Passengers can only exist if they are assigned to a flight and plane
+            if (current_plane_amount > 0 && current_flight_amount > 0) {
+                // Read External Passengers
+                if (Read_External_Passengers()) {
+                }
+                else {
+                    cout << "ERROR: Broken Reading Saved Passengers!" << std::endl;
+                }
             }
         }
         else {
@@ -314,6 +322,14 @@ namespace FinalProject {
     bool Airport::Read_External_Passengers() {
         // input file
         std::ifstream myFile ("/home/caleb/Documents/AirlineFinalProject/SavedData/passengers.txt");
+
+        // Passenger Stuff
+        std::string first_nam;
+        std::string last_nam;
+        int age_used;
+        int flight_assigned;
+        int row_assigned;
+        int seat_assigned;
 
         if (myFile.is_open()) {
             std::string line_read;
@@ -329,8 +345,42 @@ namespace FinalProject {
 
                 // Print contents of vector
                 for (int i = 0; i < seglist.size(); ++i) {
-                    cout << seglist[i] << std::endl;
+                    std::string current_string = (seglist[i]);
+                    if (current_string.find("first_name") != std::string::npos) {
+                        current_string.erase(0,11);
+                        first_nam = current_string;
+                    }
+                    else {
+                        if (current_string.find("last_name") != std::string::npos) {
+                            current_string.erase(0, 10);
+                            last_nam = current_string;
+                        }
+                        else {
+                            if (current_string.find("age") != std::string::npos) {
+                                current_string.erase(0, 4);
+                                age_used = std::stoi(current_string);
+                            }
+                            else {
+                                if (current_string.find("flight") != std::string::npos) {
+                                    current_string.erase(0, 7);
+                                    flight_assigned = std::stoi(current_string);
+                                }
+                                else {
+                                    if (current_string.find("row") != std::string::npos) {
+                                        current_string.erase(0, 4);
+                                        row_assigned = std::stoi(current_string);
+                                    }
+                                    else {
+                                        current_string.erase(0, 5);
+                                        seat_assigned = std::stoi(current_string);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+                // Everything read, create flight
+                cout << "Passenger " << first_nam << " " << last_nam << " assigned seat Row " << row_assigned << " Seat " << seat_assigned << " On Flight " << flight_assigned << "." << std::endl;
             }
             myFile.close();
             return true;
@@ -406,6 +456,77 @@ namespace FinalProject {
                     }
                     // Everything read, create plane
                     cout << "Plane " << flight_num << " created with " << rows_read << " rows and " << seats_read << " seats per row." << std::endl;
+                    myFile.close();
+                }
+                else {
+                    cout << "ERROR: Cannot Read File_ " << file_name << std::endl;
+                    return false;
+                }
+            }
+            return true;
+        }
+        else {
+            return true;
+        }
+    }
+
+    bool Airport::Read_External_Flights() {
+        // Setup Plane Options
+        int flight_num;
+        std::string destination;
+        int depart_year;
+        int depart_month;
+        int depart_day;
+        int plane;
+
+        // input file
+        if (current_flight_amount > 0) {
+            // Generate Files
+            for (int i = 0; i < current_flight_amount; ++i) {
+                std::string file_name;
+                file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/saved_flight_" + std::to_string(i+1) + ".txt";
+
+                std::ifstream myFile (file_name.c_str());
+
+                if (myFile.is_open()) {
+                    std::string line_read;
+                    cout << "READING FILE: " << file_name << std::endl;
+                    while (myFile >> line_read) {
+                        if (line_read.find("flight_num") != std::string::npos) {
+                            line_read.erase(0,11);
+                            flight_num = std::stoi(line_read);
+                        }
+                        else {
+                            if (line_read.find("destination") != std::string::npos) {
+                                line_read.erase(0, 12);
+                                destination = line_read;
+                            }
+                            else {
+                                if (line_read.find("departure_year") != std::string::npos) {
+                                    line_read.erase(0, 15);
+                                    depart_year = std::stoi(line_read);
+                                }
+                                else {
+                                    if (line_read.find("departure_month") != std::string::npos) {
+                                        line_read.erase(0, 16);
+                                        depart_month = std::stoi(line_read);
+                                    }
+                                    else {
+                                        if (line_read.find("departure_day") != std::string::npos) {
+                                            line_read.erase(0, 14);
+                                            depart_day = std::stoi(line_read);
+                                        }
+                                        else {
+                                            line_read.erase(0, 15);
+                                            plane = std::stoi(line_read);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    // Everything read, create flight
+                    cout << "Flight " << flight_num << " created with destination " << destination << " departing " << depart_month << "-" << depart_day << "-" << depart_year << "." << std::endl;
                     myFile.close();
                 }
                 else {
