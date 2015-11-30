@@ -38,3 +38,6 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/25/2015 - 2:14  PM)(Caleb G.)
 	Added running program, with user selection tool menus! Some options still need to be added!
+
+(11/28/2015 through 11/30/2015 - 12:45  PM)(Caleb G.)
+	Added ability to read from external files!!! Works correctly!
