@@ -29,7 +29,7 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 	Did a lot of work on Flight Class, started implementing very simple tests for method implementation. Pointers are working!!!
 
 (11/25/2015 - 12:30  PM)(Caleb G.)
-	Implemented Successful Methods To:
+* Implemented Successful Methods To:
 	* Add New Flight to Schedule
 	* Add New Passenger to Flight
 	* Print Upcoming Flights
@@ -43,9 +43,9 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 	Added ability to read from external files!!! Works correctly!
 
 (12/01/2015 - 1:15  PM)(Caleb G.)
-	Absolutely Need!
+* Absolutely Need
 	* Test Cases!
-	It is easier to say what is not done at this point:
+* It is easier to say what is not done at this point:
 	* Fix Seat Type Errors, irritation station right now, all are first class
 	* Fix date/time stuff
 	* Be able to sort flights, in order of flight date
