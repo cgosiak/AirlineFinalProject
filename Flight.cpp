@@ -168,7 +168,10 @@ namespace FinalProject {
                 cout << "ERROR: Plane " << use_this_plane->Get_Flight_Num() << " is already assigned to another flight!" << std::endl;
             }
             else {
-                if (assigned_plane->Get_Rows() == use_this_plane->Get_Rows() &&
+                // currently a plane swap can be made, if and only if there are exactly the same amount of seats per row as the previous plane
+                // and either equal rows or greater.
+                // we intend to add a plane switching assignmnet algorithm here, so a plane switch reassigns passengers to an optimal mapping
+                if (assigned_plane->Get_Rows() <= use_this_plane->Get_Rows() &&
                     assigned_plane->Get_Seats_Per_Row() == use_this_plane->Get_Seats_Per_Row()) {
                     assigned_plane->Return_Plane(); // return the old plane
                     assigned_plane = use_this_plane;

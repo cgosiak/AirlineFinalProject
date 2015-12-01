@@ -100,6 +100,9 @@ namespace FinalProject {
         // SS Flights
         void Save_State_Flights();
 
+        // Return a flight
+        void Return_Flight();
+
 
     private:
         int current_flight_amount = 0;

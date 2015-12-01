@@ -1,6 +1,6 @@
-flight_num=7689
-destination=GTY
+flight_num=5787
+destination=POP
 departure_year=2016
 departure_month=1
-departure_day=14
-assigned_plane=5667
+departure_day=22
+assigned_plane=0

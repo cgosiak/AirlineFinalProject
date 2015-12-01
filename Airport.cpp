@@ -121,6 +121,7 @@ namespace FinalProject {
     }
 
     bool Airport::user_selections() {
+        FinalProject::UsefulFunctions useThis;
         int usersChoice;
         cout << "\nOptions:\n" <<
         "1 - Add Passenger to Flight |   2 - Print Passengers On Flight\n" <<
@@ -149,8 +150,6 @@ namespace FinalProject {
 
                     cout << "Seat for Reservation: ";
                     cin >> userSeat;
-
-                    FinalProject::UsefulFunctions useThis;
 
                     seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
                     row_user--;
@@ -186,8 +185,15 @@ namespace FinalProject {
                 cout << "Not Yet Implemented! Under Construction!" << std::endl;
                 break;
             case 5:
-                // Have not implemented yet
-                cout << "Not Yet Implemented! Under Construction!" << std::endl;
+                // Lets Return The Flight
+                cout << "Warning: This action cannot be undone!\nAre you certain you would like to continue? ";
+                if (useThis.Yes_No_Question()) {
+                    Return_Flight();
+                    return false;
+                }
+                else {
+                    cout << "Operation successfully cancelled." << std::endl;
+                }
                 break;
             case 6:
                 selected_flight->Print_Flight_Data();
@@ -637,5 +643,26 @@ namespace FinalProject {
             myFile << current_flights[i]->Get_Writable_Packet() << std::endl;
             myFile.close();
         }
+    }
+
+    void Airport::Return_Flight() {
+        // This is a cool algorithm I, Caleb, wrote to remove a flight.
+        // Basically it moves all flights that are not being deleted into the pointer array in positions 0 - previous length -1
+        // The last pointer still exist, however we decrement the flight amount by 1, and the last element becomes inaccessible.
+
+        int iter_gator = 0; // chomp chomp
+        for (int i = 0; i < current_flight_amount; ++i) {
+            if (current_flights[i]->Get_Flight_Num() == selected_flight->Get_Flight_Num()) {
+                // This does not get iterated back into the flight
+                // Return the plane
+                selected_flight->assigned_plane->Return_Plane();
+            }
+            else {
+                // Set current iter_gator in current_flights equal to the current iterative i in current flights.
+                current_flights[iter_gator] = current_flights[i];
+                iter_gator++; // iterate to next position
+            }
+        }
+        current_flight_amount--; // decrement available flights
     }
 }
