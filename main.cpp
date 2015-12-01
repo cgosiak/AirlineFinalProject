@@ -4,11 +4,14 @@
 #include "Airport.h"
 
 using namespace std;
+
+// This will be the main user selection tool
 bool user_selections(FinalProject::Airport& airport);
 
 int main() {
     using FinalProject::Airport;
 
+    // Construct Airport
     Airport myAirport;
 
     // Read in all externally saved data
@@ -19,6 +22,7 @@ int main() {
         // Anything in here should more than likely not run
     }
 
+    // Successful Run
     return 0;
 }
 
@@ -34,16 +38,19 @@ bool user_selections(FinalProject::Airport& airport) {
     cout << std::endl;
     switch (usersChoice) {
         case 1:
+            // Adding Flight
             airport.AddFlight();
-            airport.Save_State_Flights();
             break;
         case 2:
+            // Adding plane
             airport.AddPlane();
-            airport.Save_State_Planes();
             break;
         case 3:
+            // only allows the selection of a flight, if at least one flight exists
             if (airport.Get_Number_of_Flights() > 0) {
                 airport.Select_New_Flight(); // This will have to be a loop to do user options local to the flight
+
+                // Save all data, many things can change in the flight options section
                 airport.Save_States();
             }
             else {
@@ -51,7 +58,9 @@ bool user_selections(FinalProject::Airport& airport) {
             }
             break;
         case 4:
+            // print all passengers, if passengers exist
             if (airport.Get_Number_of_Flights() > 0) {
+                // print passengers for each flight
                 airport.Print_All_Passengers();
             }
             else {
@@ -59,6 +68,7 @@ bool user_selections(FinalProject::Airport& airport) {
             }
             break;
         case 5:
+            // print all flights, if the flights exist
             if (airport.Get_Number_of_Flights() > 0) {
                 airport.Print_Upcoming_Flights();
             }
@@ -67,6 +77,7 @@ bool user_selections(FinalProject::Airport& airport) {
             }
             break;
         case 6:
+            // Print all the planes
             if (airport.Get_Number_of_Planes() > 0) {
                 airport.Print_All_Planes();
             }
@@ -75,6 +86,7 @@ bool user_selections(FinalProject::Airport& airport) {
             }
             break;
         case 7:
+            // Select internal plane, go to options for that plane
             if (airport.Get_Number_of_Planes() > 0) {
                 airport.Select_Plane_For_Options();
             }
@@ -83,8 +95,12 @@ bool user_selections(FinalProject::Airport& airport) {
             }
             break;
         case 8:
+            // Clean up arrays/pointers
             airport.CleanUp();
+
+            // Save states of all data
             airport.Save_States();
+
             cout << "\nHave a nice day!" << std::endl;
             return false;
         default:

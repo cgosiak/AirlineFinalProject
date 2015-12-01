@@ -1,10 +1,4 @@
-//
-// Created by caleb on 11/23/15.
-//
-
 #include <iostream>
-#include <cctype>
-#include <cstdlib>
 #include <iomanip>
 #include <fstream>
 #include <sstream>
@@ -22,6 +16,7 @@ namespace FinalProject {
 
 
     Airport::Airport() {
+        // Default constructor, does nothing special!
         cout << "Opening Airport!" << std::endl;
     }
 
@@ -40,10 +35,12 @@ namespace FinalProject {
     }
 
     void Airport::CleanUp() {
+        // This currently does nothing, but will clean up all arrays/pointers.
         cout << "Clean Up Array!" << std::endl;
     }
 
     void Airport::Print_Upcoming_Flights() {
+        // Loops through all available flights, and prints valuable data
         for (int i = 0; i < current_flight_amount; ++i) {
             if (i == 0) {
                 cout << "List of Upcoming Flights:" << std::endl;
@@ -72,6 +69,7 @@ namespace FinalProject {
     }
 
     bool Airport::Select_Flight(int index_of_flight) {
+        // make sure the index is valid!
         if ((index_of_flight < current_flight_amount) && (index_of_flight >= 0)) {
             selected_flight = current_flights[index_of_flight];
             cout << "SUCCESS: FLIGHT " << selected_flight->Get_Flight_Num() << " TO " << selected_flight->Get_Destination() << " SELECTED." << std::endl;
@@ -80,7 +78,6 @@ namespace FinalProject {
             while (user_selections()) {
                 // Do nothing in here! Could Possibly Update to external files here though...
             }
-
             return true;
         }
         else {
@@ -207,6 +204,7 @@ namespace FinalProject {
     }
 
     void Airport::Print_All_Planes() {
+        // for loop to print valuable info for all available planes
         for (int i = 0; i < current_plane_amount; ++i) {
             if (i == 0) {
                 cout << "List of Available Planes:" << std::endl;
@@ -234,6 +232,7 @@ namespace FinalProject {
         cout << "Enter the \"NUM\" value of the plane you would like to choose: ";
         cin >> selection;
 
+        // plane selection didn't work
         if (!Select_Plane(selection-1)) {
             // Try again
             Select_New_Plane();
@@ -241,6 +240,7 @@ namespace FinalProject {
     }
 
     bool Airport::Select_Plane(int index_of_plane) {
+        // check to be sure that the plane selection took place correctly
         if ((index_of_plane < current_plane_amount) && (index_of_plane >= 0)) {
             selected_plane = planes_at_airport[index_of_plane];
             cout << "SUCCESS: FLIGHT " << selected_plane->Get_Flight_Num() << " SELECTED." << std::endl;
@@ -338,14 +338,16 @@ namespace FinalProject {
                 std::string segment;
                 std::vector<std::string> seglist;
 
+                // create a vector of elements from a single line in the "passenger" file, seperated by the "$" character
                 while(std::getline(line_to_use, segment, '$'))
                 {
                     seglist.push_back(segment);
                 }
 
-                // Print contents of vector
+                // set options for passenger to be created from external file
+                // the erase option lets us "erase" unused characters in the current string
                 for (int i = 0; i < seglist.size(); ++i) {
-                    std::string current_string = (seglist[i]);
+                    std::string current_string = (seglist[i]); // current string is the current iterated element in the vector created above
                     if (current_string.find("first_name") != std::string::npos) {
                         current_string.erase(0,11);
                         first_nam = current_string;

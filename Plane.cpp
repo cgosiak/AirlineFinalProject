@@ -5,8 +5,9 @@
 //
 #include <iostream>
 #include <fstream>
-#include <cctype>
-#include <cstdlib>
+#include <vector>
+#include <iomanip>
+#include <sstream>
 using std::istream;
 using std::ostream;
 using std::cout;
@@ -300,7 +301,11 @@ namespace FinalProject {
     }
 
     void Plane::Return_Plane() {
+        // no longer assigned
         assigned_to_flight = false;
+
+        // give a brand new seat mapping
+        plane_seat_map = new SeatMap(plane_rows, plane_seats_per_row);
     }
 
     bool Plane::Reserve_Seat_For_Passenger(int row, int seat, Passenger *reserving_passenger) {

@@ -1,10 +1,4 @@
-//
-// Created by caleb on 11/24/15.
-//
-
 #include <iostream>
-#include <cctype>
-#include <cstdlib>
 #include <iomanip>
 using std::istream;
 using std::ostream;
@@ -12,7 +6,6 @@ using std::cout;
 using std::cin;
 
 #include "Passenger.h"
-#include "UsefulFunctions.h"
 #include "Seat.h"
 
 namespace FinalProject {

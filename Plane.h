@@ -1,7 +1,3 @@
-//
-// Created by caleb on 10/12/15.
-//
-
 #ifndef MYPROGRAM3_PLANE_H
 #define MYPROGRAM3_PLANE_H
 

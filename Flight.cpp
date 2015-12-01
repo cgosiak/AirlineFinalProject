@@ -1,10 +1,5 @@
-//
-// Created by caleb on 11/23/15.
-//
 #include <iostream>
 #include <fstream>
-#include <cctype>
-#include <cstdlib>
 #include <iomanip>
 using std::istream;
 using std::ostream;
@@ -12,7 +7,6 @@ using std::cout;
 using std::cin;
 
 #include "Flight.h"
-#include "UsefulFunctions.h"
 
 namespace FinalProject {
 
@@ -115,13 +109,17 @@ namespace FinalProject {
 
     std::string Flight::Get_Departure_Date() {
         std::string depart_day;
+        // make nice looking date format MM-DD-YYYY
         depart_day = std::to_string(month) + "-" + std::to_string(day) + "-" + std::to_string(year);
         return depart_day;
     }
 
     int Flight::Get_Seats_Available() {
         if (plane_assigned) {
+            // max amount of passengers is rows * seats per row
             max_amount_of_passengers = assigned_plane->Get_Rows() * assigned_plane->Get_Seats_Per_Row();
+
+            // max available - seats taken
             seats_available = max_amount_of_passengers - assigned_passengers;
         }
         else {

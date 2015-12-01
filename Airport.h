@@ -1,7 +1,3 @@
-//
-// Created by caleb on 11/23/15.
-//
-
 #ifndef MYPROGRAM3_AIRPORT_H
 #define MYPROGRAM3_AIRPORT_H
 
@@ -108,10 +104,6 @@ namespace FinalProject {
     private:
         int current_flight_amount = 0;
         int current_plane_amount = 0;
-
-        // Save Index Yo!
-        int index_of_saved_flight;
-        int index_of_saved_plane;
     };
 }
 
