@@ -242,4 +242,10 @@ namespace FinalProject {
 
         return packet_to_use;
     }
+
+    void Flight::Update_Passengers() {
+        for (int i = 0; i < assigned_passengers; ++i) {
+            assigned_plane->Reserve_From_External_File(passengers[i]->row,passengers[i]->seat,passengers[i]);
+        }
+    }
 }

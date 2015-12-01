@@ -32,6 +32,9 @@ namespace FinalProject {
             // This is used to get a string to write to external file!
             std::string Get_Writable_Data(int flight_num);
 
+            int row;
+            int seat;
+
         private:
             // Passenger Identifiers
             std::string first_name;
@@ -40,8 +43,6 @@ namespace FinalProject {
 
             // Seat Assigned To
             Seat *assigned_seat;
-            int row;
-            int seat;
 
             // Bool for checking
             bool assigned_to_seat = false;

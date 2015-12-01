@@ -173,6 +173,10 @@ namespace FinalProject {
             case 3:
                 if (current_plane_amount > 0) {
                     Select_New_Plane();
+
+                    // keep track of old plane
+                    Plane *old_plane = selected_flight->assigned_plane;
+
                     selected_flight->Assign_Plane(selected_plane);
                 }
                 else {
@@ -384,8 +388,13 @@ namespace FinalProject {
                 // Everything read, create flight
                 for (int j = 0; j < current_flight_amount; ++j) {
                     if (current_flights[j]->Get_Flight_Num() == flight_assigned) {
-                        current_flights[j]->Add_Passenger_To_Flight(first_nam,last_nam,age_used,row_assigned,seat_assigned);
-                        current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned-1),(seat_assigned-1),current_flights[j]->most_recently_added);
+                        if (seat_assigned > 0 && row_assigned > 0) {
+                            current_flights[j]->Add_Passenger_To_Flight(first_nam, last_nam, age_used, row_assigned,
+                                                                        seat_assigned);
+                            current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned - 1),
+                                                                                           (seat_assigned - 1),
+                                                                                           current_flights[j]->most_recently_added);
+                        }
                     }
                 }
                 cout << "Passenger " << first_nam << " " << last_nam << " assigned seat Row " << row_assigned << " Seat " << seat_assigned << " On Flight " << flight_assigned << "." << std::endl;

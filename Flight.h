@@ -72,6 +72,9 @@ namespace FinalProject {
         // Get packet of output info for writing flight to external file
         std::string Get_Writable_Packet();
 
+        // Update Passengers, like when a new plane is assigned
+        void Update_Passengers();
+
     private:
         // Name of Flight
         int flight_num;
