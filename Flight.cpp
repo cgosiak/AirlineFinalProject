@@ -120,6 +120,13 @@ namespace FinalProject {
     }
 
     int Flight::Get_Seats_Available() {
+        if (plane_assigned) {
+            max_amount_of_passengers = assigned_plane->Get_Rows() * assigned_plane->Get_Seats_Per_Row();
+            seats_available = max_amount_of_passengers - assigned_passengers;
+        }
+        else {
+            seats_available = 0;
+        }
         return seats_available;
     }
 
