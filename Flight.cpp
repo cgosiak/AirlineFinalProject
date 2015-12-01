@@ -177,6 +177,7 @@ namespace FinalProject {
                     seats_available = (assigned_plane->Get_Max_Seats() - assigned_passengers);
                     plane_assigned = true;
                     assigned_plane->Take_Plane();
+                    Update_Passengers();
                 }
                 else {
                     cout << "ERROR: Plane " << use_this_plane->Get_Flight_Num() << " is not a valid substitute for plane " << assigned_plane->Get_Flight_Num() << std::endl;

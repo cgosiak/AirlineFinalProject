@@ -174,9 +174,6 @@ namespace FinalProject {
                 if (current_plane_amount > 0) {
                     Select_New_Plane();
 
-                    // keep track of old plane
-                    Plane *old_plane = selected_flight->assigned_plane;
-
                     selected_flight->Assign_Plane(selected_plane);
                 }
                 else {
