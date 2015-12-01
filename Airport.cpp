@@ -565,6 +565,11 @@ namespace FinalProject {
         // If need arose it would be fairly easy to keep track of backup files/folders as well, but
         // for the sake of this assignment is entirely unnecessary
 
+        // Delete all contents in directory first!
+        std::string command = "rm ";
+        std::string path = "/home/caleb/Documents/AirlineFinalProject/SavedData/*.txt";
+        system(command.append(path).c_str());
+
         // Planes and Flight Amount First
         Save_State_Planes_Flights();
 
@@ -573,7 +578,6 @@ namespace FinalProject {
 
         // Write Plane Data
         Save_State_Planes();
-
         // Write Flight Data
         Save_State_Flights();
     }
