@@ -30,10 +30,10 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/25/2015 - 12:30  PM)(Caleb G.)
 	Implemented Successful Methods To:
-	-Add New Flight to Schedule
-	-Add New Passenger to Flight
-	-Print Upcoming Flights
-	-Print a List of Passengers on a Flight
+	* Add New Flight to Schedule
+	* Add New Passenger to Flight
+	* Print Upcoming Flights
+	* Print a List of Passengers on a Flight
 	Will polish methods later! Also, I must note the being able to print the list of passengers to a flight also is the method I will use to print all passengers at the airport! Thus there is no need to keep track of an full list of all passengers at the airport, we would just make that list dynamically.
 
 (11/25/2015 - 2:14  PM)(Caleb G.)
@@ -41,3 +41,19 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 
 (11/28/2015 through 11/30/2015 - 12:45  PM)(Caleb G.)
 	Added ability to read from external files!!! Works correctly!
+
+(12/01/2015 - 1:15  PM)(Caleb G.)
+	Absolutely Need!
+	* Test Cases!
+	It is easier to say what is not done at this point:
+	* Fix Seat Type Errors, irritation station right now, all are first class
+	* Fix date/time stuff
+	* Be able to sort flights, in order of flight date
+	* Delete flights if they are passed
+	* Assign the same plane to multiple flights
+	* Make unique keys for flights, and planes
+	* Flight Options: dep_date/time and arr_date/time
+	* Add a passenger to multiple flights
+	* Error checking of inputs
+	* Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah
+
