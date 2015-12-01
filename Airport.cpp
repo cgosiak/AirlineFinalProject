@@ -566,10 +566,16 @@ namespace FinalProject {
         // for the sake of this assignment is entirely unnecessary
 
         // Planes and Flight Amount First
-        // Save_State_Planes_Flights();
+        Save_State_Planes_Flights();
 
         // Write Passenger Data
-        // Save_State_Passengers();
+        Save_State_Passengers();
+
+        // Write Plane Data
+        Save_State_Planes();
+
+        // Write Flight Data
+        Save_State_Flights();
     }
 
     void Airport::Save_State_Planes_Flights() {
@@ -595,6 +601,29 @@ namespace FinalProject {
             for (int i = 0; i < current_flight_amount; ++i) {
                 current_flights[i]->Write_Passengers(myFile);
             }
+        }
+        myFile.close();
+    }
+
+    void Airport::Save_State_Planes() {
+        std::string file_name;
+        // Iterate through all planes, each with a new file name
+        for (int i = 0; i < current_plane_amount; ++i) {
+            file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/saved_plane_" + std::to_string(i+1) + ".txt";
+            std::ofstream myFile (file_name.c_str());
+            myFile << planes_at_airport[i]->Get_Writable_Data() << std::endl;
+            myFile.close();
+        }
+    }
+
+    void Airport::Save_State_Flights() {
+        std::string file_name;
+        // Iterate through all flights, each with a new file name
+        for (int i = 0; i < current_flight_amount; ++i) {
+            file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/saved_flight_" + std::to_string(i+1) + ".txt";
+            std::ofstream myFile (file_name.c_str());
+            myFile << current_flights[i]->Get_Writable_Packet() << std::endl;
+            myFile.close();
         }
     }
 }

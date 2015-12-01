@@ -73,6 +73,9 @@ namespace FinalProject {
         // Saving Passengers w/ Reference to Write File, and right file...
         void Write_Passengers(std::ofstream& my_output_file);
 
+        // Get packet of output info for writing flight to external file
+        std::string Get_Writable_Packet();
+
     private:
         // Name of Flight
         int flight_num;

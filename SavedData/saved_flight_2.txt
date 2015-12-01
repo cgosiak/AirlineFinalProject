@@ -1,6 +1,6 @@
 flight_num=4444
 destination=WRT
 departure_year=2015
-departure_month=06
+departure_month=6
 departure_day=29
 assigned_plane=1111

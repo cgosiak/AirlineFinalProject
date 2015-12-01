@@ -11,8 +11,6 @@ int main() {
 
     Airport myAirport;
 
-    myAirport.Save_States();
-
     // Read in all externally saved data
     myAirport.Read_External_Saved();
 
@@ -37,13 +35,16 @@ bool user_selections(FinalProject::Airport& airport) {
     switch (usersChoice) {
         case 1:
             airport.AddFlight();
+            airport.Save_State_Flights();
             break;
         case 2:
             airport.AddPlane();
+            airport.Save_State_Planes();
             break;
         case 3:
             if (airport.Get_Number_of_Flights() > 0) {
                 airport.Select_New_Flight(); // This will have to be a loop to do user options local to the flight
+                airport.Save_States();
             }
             else {
                 cout << "\nNo Flights Exist! Add a Flight First!" << std::endl;
@@ -83,6 +84,7 @@ bool user_selections(FinalProject::Airport& airport) {
             break;
         case 8:
             airport.CleanUp();
+            airport.Save_States();
             cout << "\nHave a nice day!" << std::endl;
             return false;
         default:

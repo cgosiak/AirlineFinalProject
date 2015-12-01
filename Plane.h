@@ -108,6 +108,9 @@ namespace FinalProject {
         // Reserve from external file
         void Reserve_From_External_File(int row, int seat, Passenger *passenger_from_file);
 
+        // Get the string to write to files
+        std::string Get_Writable_Data();
+
 
     private:
         int flightNumber = 456;

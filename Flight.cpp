@@ -218,4 +218,23 @@ namespace FinalProject {
             my_output_file << acquired_passenger_data << std::endl;
         }
     }
+
+    std::string Flight::Get_Writable_Packet() {
+        std::string packet_to_use;
+
+        if (plane_assigned) {
+            packet_to_use =
+                    "flight_num=" + std::to_string(flight_num) + "\ndestination=" + destination + "\ndeparture_year=" +
+                    std::to_string(year) + "\ndeparture_month=" + std::to_string(month) + "\ndeparture_day=" +
+                    std::to_string(day) + "\nassigned_plane=" + std::to_string(assigned_plane->Get_Flight_Num());
+        }
+        else {
+            packet_to_use =
+                    "flight_num=" + std::to_string(flight_num) + "\ndestination=" + destination + "\ndeparture_year=" +
+                    std::to_string(year) + "\ndeparture_month=" + std::to_string(month) + "\ndeparture_day=" +
+                    std::to_string(day) + "\nassigned_plane=" + std::to_string(0);
+        }
+
+        return packet_to_use;
+    }
 }

@@ -328,4 +328,12 @@ namespace FinalProject {
         plane_seat_map->Reserve_From_File(row,seat,passenger_from_file);
         passenger_from_file->Assign_Seat(plane_seat_map->last_assigned_seat);
     }
+
+    std::string Plane::Get_Writable_Data() {
+        std::string packet_to_write;
+
+        packet_to_write = "plane_num=" + std::to_string(flightNumber) + "\nrows=" + std::to_string(plane_rows) + "\nseats_per_row=" + std::to_string(plane_seats_per_row);
+
+        return packet_to_write;
+    }
 }

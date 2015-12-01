@@ -98,6 +98,12 @@ namespace FinalProject {
         // SS Passengers
         void Save_State_Passengers();
 
+        // SS Planes
+        void Save_State_Planes();
+
+        // SS Flights
+        void Save_State_Flights();
+
 
     private:
         int current_flight_amount = 0;
