@@ -558,4 +558,43 @@ namespace FinalProject {
             return true;
         }
     }
+
+    void Airport::Save_States() {
+        // Something to keep in mind is persistent data, where the same files will be stored in the same directories
+        // and will always be overwritten!
+        // If need arose it would be fairly easy to keep track of backup files/folders as well, but
+        // for the sake of this assignment is entirely unnecessary
+
+        // Planes and Flight Amount First
+        // Save_State_Planes_Flights();
+
+        // Write Passenger Data
+        // Save_State_Passengers();
+    }
+
+    void Airport::Save_State_Planes_Flights() {
+        std::string file_name;
+        file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/planes_and_flights.txt";
+        std::ofstream myFile (file_name.c_str());
+
+        if (myFile.is_open()) {
+            myFile << "planes=" << current_plane_amount << std::endl;
+            myFile << "flights=" << current_flight_amount << std::endl;
+        }
+
+        myFile.close();
+    }
+
+    void Airport::Save_State_Passengers() {
+        std::string file_name;
+        file_name = "/home/caleb/Documents/AirlineFinalProject/SavedData/passengers.txt";
+        std::ofstream myFile (file_name.c_str());
+
+        if (myFile.is_open()) {
+            // Must loop through all available flights!
+            for (int i = 0; i < current_flight_amount; ++i) {
+                current_flights[i]->Write_Passengers(myFile);
+            }
+        }
+    }
 }

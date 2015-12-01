@@ -70,6 +70,9 @@ namespace FinalProject {
         // Last Created Passenger
         Passenger *most_recently_added;
 
+        // Saving Passengers w/ Reference to Write File, and right file...
+        void Write_Passengers(std::ofstream& my_output_file);
+
     private:
         // Name of Flight
         int flight_num;

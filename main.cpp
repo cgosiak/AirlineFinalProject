@@ -11,6 +11,8 @@ int main() {
 
     Airport myAirport;
 
+    myAirport.Save_States();
+
     // Read in all externally saved data
     myAirport.Read_External_Saved();
 

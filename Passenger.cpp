@@ -66,4 +66,10 @@ namespace FinalProject {
         row = row_used;
         seat = seat_used;
     }
+
+    std::string Passenger::Get_Writable_Data(int flight_num) {
+        std::string write_this;
+        write_this = "first_name=" + first_name + "$last_name=" + last_name + "$age=" + std::to_string(age) + "$flight=" + std::to_string(flight_num) + "$row=" + std::to_string(row) + "$seat=" + std::to_string(seat);
+        return write_this;
+    }
 }

@@ -2,6 +2,7 @@
 // Created by caleb on 11/23/15.
 //
 #include <iostream>
+#include <fstream>
 #include <cctype>
 #include <cstdlib>
 #include <iomanip>
@@ -209,5 +210,12 @@ namespace FinalProject {
 
         // Add connection to passenger, of the flight the passenger has booked
         passengers[assigned_passengers-1]->Add_To_Flight(this);
+    }
+
+    void Flight::Write_Passengers(std::ofstream& my_output_file) {
+        for (int i = 0; i < assigned_passengers; ++i) {
+            std::string acquired_passenger_data = passengers[i]->Get_Writable_Data(flight_num);
+            my_output_file << acquired_passenger_data << std::endl;
+        }
     }
 }

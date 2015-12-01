@@ -89,6 +89,15 @@ namespace FinalProject {
         // Read external flights
         bool Read_External_Flights();
 
+        // Need to write to external files now!
+        void Save_States();
+
+        // SS Planes?FLights
+        void Save_State_Planes_Flights();
+
+        // SS Passengers
+        void Save_State_Passengers();
+
 
     private:
         int current_flight_amount = 0;
