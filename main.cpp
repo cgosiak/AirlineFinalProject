@@ -2,6 +2,7 @@
 #include "Plane.h"
 #include "Flight.h"
 #include "Airport.h"
+#include "UsefulFunctions.h"
 
 using namespace std;
 
@@ -11,10 +12,7 @@ bool user_selections(FinalProject::Airport& airport);
 int main() {
     using FinalProject::Airport;
 
-    // Testing Time Stuff
-    std::time_t now = time(0);
-    char* dt = ctime(&now);
-    cout << "Current Date/Time: " << dt << std::endl;
+    FinalProject::UsefulFunctions useThis;
 
     // Construct Airport
     Airport myAirport;
@@ -24,6 +22,19 @@ int main() {
 
     // After a read, delete all old flights
     myAirport.Delete_Old_Flights();
+
+    for (int i = 0; i < 3; ++i) {
+        cout << endl;
+    }
+
+    cout << "Would You Like to Run Test Cases? ";
+    if (useThis.Yes_No_Question()) {
+        myAirport.Run_Test_Cases();
+    }
+
+    for (int i = 0; i < 3; ++i) {
+        cout << endl;
+    }
 
     // Main Airport Loop for User Interaction
     while (user_selections(myAirport)) {

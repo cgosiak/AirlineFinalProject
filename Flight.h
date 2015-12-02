@@ -92,6 +92,9 @@ namespace FinalProject {
         // date structure
         time_t departure_date;
 
+        // bool, is there passengers on this plane
+        bool Has_Passengers();
+
     private:
         // Name of Flight
         int flight_num;

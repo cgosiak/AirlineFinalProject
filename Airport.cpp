@@ -936,4 +936,33 @@ namespace FinalProject {
         }
         return false;
     }
+
+    void Airport::Run_Test_Cases() {
+        // For all flights, if passengers exist then a plane must be assigned
+        cout << "\nPassenger/Plane Check\nIf a passenger is assigned to a flight, a plane must be assigned to that flight." << std::endl;
+        for (int i = 0; i < current_flight_amount; ++i) {
+            if (current_flights[i]->Has_Passengers()) {
+                if (current_flights[i]->Is_Assigned()) {
+                    cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "PASS" << std::endl;
+                }
+                else {
+                    cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "FAIL" << std::endl;
+                }
+            }
+            else {
+                cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "PASS" << std::endl;
+            }
+        }
+
+        // No planes should exist that have already passed
+        cout << "\nPlane Date Check\nNo Flights exist that have passed." << std::endl;
+        for (int i = 0; i < current_flight_amount; ++i) {
+            if (current_flights[i]->Get_Days_To_Flight() >= 0) {
+                cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "PASS" << std::endl;
+            }
+            else {
+                cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "FAIL" << std::endl;
+            }
+        }
+    }
 }

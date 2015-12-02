@@ -444,4 +444,11 @@ namespace FinalProject {
         // Add connection to passenger, of the flight the passenger has booked
         passengers[assigned_passengers-1]->Add_To_Flight(this);
     }
+
+    bool Flight::Has_Passengers() {
+        if (assigned_passengers > 0) {
+            return true;
+        }
+        return false;
+    }
 }

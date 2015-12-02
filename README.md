@@ -58,11 +58,7 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 	* Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah
 
 (12/02/2015 - 1:15  PM)(Caleb G.)
-* Absolutely Need
-	* Test Cases!
 * It is easier to say what is not done at this point:
 	* Assign the same plane to multiple flights
-	* Make unique keys for flights, and planes
 	* Error checking of inputs
-	* Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah
 

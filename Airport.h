@@ -129,6 +129,9 @@ namespace FinalProject {
         // Check for Duplicate Plane
         bool Check_For_Duplicate_Plane(int bool_plane_no);
 
+        // Run Test Cases
+        void Run_Test_Cases();
+
 
     private:
         int current_flight_amount = 0;
