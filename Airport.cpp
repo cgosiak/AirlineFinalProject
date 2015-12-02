@@ -41,6 +41,8 @@ namespace FinalProject {
     }
 
     void Airport::Print_Upcoming_Flights() {
+        // Order Flights by Departure Date
+        Order_Flights_By_Date();
         // Loops through all available flights, and prints valuable data
         for (int i = 0; i < current_flight_amount; ++i) {
             if (i == 0) {
@@ -701,8 +703,10 @@ namespace FinalProject {
         for (int i = 0; i < current_flight_amount; ++i) {
             if (current_flights[i]->Get_Flight_Num() == selected_flight->Get_Flight_Num()) {
                 // This does not get iterated back into the flight
-                // Return the plane
-                selected_flight->assigned_plane->Return_Plane();
+                // Return the plane, if one exists
+                if (selected_flight->Is_Assigned()) {
+                    selected_flight->assigned_plane->Return_Plane();
+                }
             }
             else {
                 // Set current iter_gator in current_flights equal to the current iterative i in current flights.
@@ -714,32 +718,31 @@ namespace FinalProject {
     }
 
     void Airport::Order_Flights_By_Date() {
-//        // Need to sort flights by date
-//        // we will sort by days to flight
-//        time_t days_array[current_flight_amount];
-//        for (int i = 0; i < current_flight_amount; ++i) {
-//            days_array[i] = current_flights[i]->departure_date;
-//        }
-//
-//        // sort array
-//        std::sort(std::begin(days_array),std::end(days_array));
-//
-//        // now reiterate, with a new array of pointers
-//        Flight *new_sorted_array[current_flight_amount];
-//
-//        for (int j = 0; j < current_flight_amount; ++j) {
-//            time_t required_time = days_array[j];
-//            for (int i = 0; i < current_flight_amount; ++i) {
-//                if (current_flights[i]->departure_date == required_time) {
-//                    new_sorted_array[j] = current_flights[i];
-//                }
-//            }
-//        }
-//
-//        // reset the flights list to represent changes
-//        for (int k = 0; k < current_flight_amount; ++k) {
-//            current_flights[k] = new_sorted_array[k];
-//        }
-//
+        // Need to sort flights by date
+        // we will sort by days to flight
+        // applying a bubble sort method!
+
+        for (int i = 0; i < (current_flight_amount-1); ++i) {
+            for (int j = 0; j < (current_flight_amount - i - 1); ++j) {
+                if (current_flights[j]->departure_date > current_flights[j+1]->departure_date) {
+                    Flight *swap = current_flights[j];
+                    current_flights[j] = current_flights[j+1];
+                    current_flights[j+1] = swap;
+                }
+            }
+        }
+
+    }
+
+    void Airport::Delete_Old_Flights() {
+        for (int i = 0; i < current_flight_amount; ++i) {
+            if (current_flights[i]->Get_Days_To_Flight() < 0) {
+                // Select the flight
+                selected_flight = current_flights[i];
+
+                // Delete the flight!
+                Return_Flight();
+            }
+        }
     }
 }

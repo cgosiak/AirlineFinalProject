@@ -106,6 +106,9 @@ namespace FinalProject {
         // Order flights by date
         void Order_Flights_By_Date();
 
+        // Delete all Flights passed
+        void Delete_Old_Flights();
+
 
     private:
         int current_flight_amount = 0;

@@ -1,2 +1,2 @@
 planes=5
-flights=5
+flights=6

@@ -1,0 +1,13 @@
+flight_num=3464
+destination=DWT
+departure_year=2015
+departure_month=3
+departure_day=30
+departure_hour=9
+departure_minute=30
+arrival_year=2015
+arrival_month=3
+arrival_day=2
+arrival_hour=15
+arrival_minute=30
+assigned_plane=0

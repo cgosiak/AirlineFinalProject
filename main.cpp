@@ -22,6 +22,9 @@ int main() {
     // Read in all externally saved data
     myAirport.Read_External_Saved();
 
+    // After a read, delete all old flights
+    myAirport.Delete_Old_Flights();
+
     // Main Airport Loop for User Interaction
     while (user_selections(myAirport)) {
         // Anything in here should more than likely not run
