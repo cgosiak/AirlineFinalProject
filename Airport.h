@@ -123,6 +123,12 @@ namespace FinalProject {
         // Return Passenger Object
         Passenger* Get_Duplicate_Passenger(std::string f_name, std::string l_name, int age);
 
+        // Check for Duplicate Flight
+        bool Check_For_Duplicate_Flight(int bool_flight_no);
+
+        // Check for Duplicate Plane
+        bool Check_For_Duplicate_Plane(int bool_plane_no);
+
 
     private:
         int current_flight_amount = 0;

@@ -61,10 +61,8 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 * Absolutely Need
 	* Test Cases!
 * It is easier to say what is not done at this point:
-	* Be able to sort flights, in order of flight date
 	* Assign the same plane to multiple flights
 	* Make unique keys for flights, and planes
-	* Add a passenger to multiple flights
 	* Error checking of inputs
 	* Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah
 

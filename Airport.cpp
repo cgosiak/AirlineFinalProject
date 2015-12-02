@@ -22,17 +22,21 @@ namespace FinalProject {
     }
 
     void Airport::AddFlight() {
-        // Increment Flight Amount
-        current_flight_amount++;
-
-        // Leave Space on screen for formatting
-        cout << std::endl;
-
         // Create a new flight at the pointed array position
-        current_flights[current_flight_amount-1] = new Flight();
+        current_flights[current_flight_amount] = new Flight();
 
-        // Print name of the created flight
-        cout << "Flight " << current_flights[current_flight_amount-1]->Get_Flight_Num() << " Created!" << std::endl;
+        if (Check_For_Duplicate_Flight(current_flights[current_flight_amount]->Get_Flight_Num())) {
+            // Duplicate Exists
+            cout << "Flight " << current_flights[current_flight_amount-1]->Get_Flight_Num() << " Already Exists!" << std::endl;
+        }
+        else {
+            // DUplicate does not exist
+            // Print name of the created flight
+            cout << "Flight " << current_flights[current_flight_amount-1]->Get_Flight_Num() << " Created!" << std::endl;
+
+            // Increment Flight Amount
+            current_flight_amount++;
+        }
     }
 
     void Airport::CleanUp() {
@@ -61,14 +65,19 @@ namespace FinalProject {
     }
 
     void Airport::AddPlane() {
-        // Increment Plane Amount
-        current_plane_amount++;
-
         // Create a new flight at the pointed array position
-        planes_at_airport[current_plane_amount-1] = new Plane();
+        planes_at_airport[current_plane_amount] = new Plane();
 
-        // Print name of the created flight
-        cout << "New Plane Added!" << std::endl;
+        if (Check_For_Duplicate_Plane(planes_at_airport[current_plane_amount]->Get_Flight_Num())) {
+            cout << "ERROR: Plane Already Exists!" << std::endl;
+        }
+        else {
+            // Print name of the created flight
+            cout << "New Plane Added!" << std::endl;
+
+            // Increment Plane Amount
+            current_plane_amount++;
+        }
     }
 
     bool Airport::Select_Flight(int index_of_flight) {
@@ -908,5 +917,23 @@ namespace FinalProject {
             }
         }
         return nullptr;
+    }
+
+    bool Airport::Check_For_Duplicate_Flight(int bool_flight_no) {
+        for (int i = 0; i < current_flight_amount; ++i) {
+            if (bool_flight_no == current_flights[i]->Get_Flight_Num()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    bool Airport::Check_For_Duplicate_Plane(int bool_plane_no) {
+        for (int i = 0; i < current_plane_amount; ++i) {
+            if (bool_plane_no == planes_at_airport[i]->Get_Flight_Num()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
