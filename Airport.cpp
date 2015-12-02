@@ -159,11 +159,20 @@ namespace FinalProject {
                         seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
                         row_user--;
 
-                        selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
-                                                                                    selected_flight->most_recently_added);
+                        if (Check_For_Duplicate_Passenger(selected_flight->most_recently_added->Get_First(),selected_flight->most_recently_added->Get_Last(),selected_flight->most_recently_added->Get_Age())) {
+                            selected_passenger = Get_Duplicate_Passenger(selected_flight->most_recently_added->Get_First(),selected_flight->most_recently_added->Get_Last(),selected_flight->most_recently_added->Get_Age());
+                            selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
+                                                                                        selected_passenger);
 
-                        all_passengers[current_passenger_amount] = selected_flight->most_recently_added; // add the most recently added passenger to the list of all passengers
-                        current_passenger_amount++;
+                            // Now get rid of any funky changes made by the addition of a passenger that was already added
+                            selected_flight->Fix_Added_Passenger(selected_passenger);
+                        }
+                        else {
+                            selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
+                                                                                        selected_flight->most_recently_added);
+                            all_passengers[current_passenger_amount] = selected_flight->most_recently_added; // add the most recently added passenger to the list of all passengers
+                            current_passenger_amount++;
+                        }
                     }
                     else {
                         // Need to use an old passenger

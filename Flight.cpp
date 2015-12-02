@@ -433,4 +433,15 @@ namespace FinalProject {
         // Add connection to passenger, of the flight the passenger has booked
         passengers[assigned_passengers-1]->Add_To_Flight(this);
     }
+
+    void Flight::Fix_Added_Passenger(Passenger *fixed_passenger) {
+        // Add ability to add passenger
+        passengers[assigned_passengers-1] = fixed_passenger;
+
+        // Set current passenger as most recently added
+        most_recently_added = passengers[assigned_passengers-1];
+
+        // Add connection to passenger, of the flight the passenger has booked
+        passengers[assigned_passengers-1]->Add_To_Flight(this);
+    }
 }

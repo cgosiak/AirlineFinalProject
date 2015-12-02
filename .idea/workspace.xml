@@ -36,8 +36,8 @@
       <file leaf-file-name="Airport.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Airport.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38813558">
-              <caret line="439" column="130" selection-start-line="439" selection-start-column="130" selection-end-line="439" selection-end-column="130" />
+            <state vertical-scroll-proportion="0.9457627">
+              <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <element signature="e#191#211#0" expanded="true" />
@@ -68,11 +68,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Flight.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flight.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+              <folding>
+                <element signature="e#61#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Flight.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flight.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
+              <caret line="438" column="59" selection-start-line="438" selection-start-column="59" selection-end-line="438" selection-end-column="59" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
                 <element signature="e#149#168#0" expanded="true" />
@@ -133,18 +145,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Flight.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flight.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-              <folding>
-                <element signature="e#61#79#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="IdeDocumentHistory">
@@ -158,16 +158,16 @@
         <option value="$PROJECT_DIR$/UsefulFunctions.cpp" />
         <option value="$PROJECT_DIR$/SeatMap.cpp" />
         <option value="$PROJECT_DIR$/Seat.cpp" />
-        <option value="$PROJECT_DIR$/Flight.cpp" />
         <option value="$PROJECT_DIR$/Plane.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Plane.h" />
-        <option value="$PROJECT_DIR$/Flight.h" />
         <option value="$PROJECT_DIR$/SeatMap.h" />
         <option value="$PROJECT_DIR$/Seat.h" />
         <option value="$PROJECT_DIR$/Passenger.h" />
         <option value="$PROJECT_DIR$/Passenger.cpp" />
         <option value="$PROJECT_DIR$/Airport.h" />
+        <option value="$PROJECT_DIR$/Flight.h" />
+        <option value="$PROJECT_DIR$/Flight.cpp" />
         <option value="$PROJECT_DIR$/Airport.cpp" />
       </list>
     </option>
@@ -690,16 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flight.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
-          <folding>
-            <element signature="e#61#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SeatMap.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -742,6 +732,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Flight.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="59" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="59" />
+          <folding>
+            <element signature="e#61#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flight.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="438" column="59" selection-start-line="438" selection-start-column="59" selection-end-line="438" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#149#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Airport.h">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -752,21 +763,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flight.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="426" column="0" selection-start-line="426" selection-start-column="0" selection-end-line="426" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#149#168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Airport.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38813558">
-          <caret line="439" column="130" selection-start-line="439" selection-start-column="130" selection-end-line="439" selection-end-column="130" />
+        <state vertical-scroll-proportion="0.9457627">
+          <caret line="167" column="85" selection-start-line="167" selection-start-column="85" selection-end-line="167" selection-end-column="85" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
             <element signature="e#191#211#0" expanded="true" />

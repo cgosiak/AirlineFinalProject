@@ -38,6 +38,9 @@ namespace FinalProject {
         // Overloaded to handle the addition of an already created passenger
         void Add_Passenger_To_Flight(Passenger *passenger_used, int row_used, int seat_used);
 
+        // Fix added passenger in the event a passenger is created that should not have been
+        void Fix_Added_Passenger(Passenger *fixed_passenger);
+
         // Print Names of all passengers
         void Print_Passenger_List();
 
