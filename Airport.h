@@ -4,6 +4,7 @@
 #include "Flight.h"
 #include "Plane.h"
 #include "Passenger.h"
+#include <vector>
 
 namespace FinalProject {
     class Airport {
@@ -109,10 +110,20 @@ namespace FinalProject {
         // Delete all Flights passed
         void Delete_Old_Flights();
 
+        // Select a passenger object
+        void Select_Passenger();
+        Passenger *selected_passenger; // currently seleted passenger
+
+        // Passenger Selected Tools
+        bool Passenger_Options();
+
 
     private:
         int current_flight_amount = 0;
         int current_plane_amount = 0;
+        int current_passenger_amount = 0;
+
+        Passenger *all_passengers[5000]; // array of all passengers, could be bigger
     };
 }
 

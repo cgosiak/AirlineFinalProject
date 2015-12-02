@@ -1,16 +1,18 @@
 #include <iostream>
 #include <iomanip>
+#include "Passenger.h"
+#include "Seat.h"
+
 using std::istream;
 using std::ostream;
 using std::cout;
 using std::cin;
 
-#include "Passenger.h"
-#include "Seat.h"
 
 namespace FinalProject {
 
     Passenger::Passenger() {
+
         cout << std::endl;
         cout << "New Passenger Creation" << std::endl;
         cout << "----------------------------" << std::endl;
@@ -22,6 +24,7 @@ namespace FinalProject {
 
         cout << "Passenger Age: ";
         cin >> age;
+
     }
 
     std::string Passenger::Get_Name() {
@@ -64,5 +67,9 @@ namespace FinalProject {
         std::string write_this;
         write_this = "first_name=" + first_name + "$last_name=" + last_name + "$age=" + std::to_string(age) + "$flight=" + std::to_string(flight_num) + "$row=" + std::to_string(row) + "$seat=" + std::to_string(seat);
         return write_this;
+    }
+
+    int Passenger::Get_Age() {
+        return age;
     }
 }

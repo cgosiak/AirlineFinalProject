@@ -418,4 +418,19 @@ namespace FinalProject {
         }
         return arrival_date_string;
     }
+
+    Passenger* Flight::Return_Passenger_Object(int object_iter) {
+        return passengers[object_iter];
+    }
+
+    void Flight::Add_Passenger_To_Flight(Passenger *passenger, int row_used, int seat_used) {
+        assigned_passengers++;
+        passengers[assigned_passengers-1] = passenger;
+
+        // Set current passenger as most recently added
+        most_recently_added = passengers[assigned_passengers-1];
+
+        // Add connection to passenger, of the flight the passenger has booked
+        passengers[assigned_passengers-1]->Add_To_Flight(this);
+    }
 }

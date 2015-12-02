@@ -32,6 +32,8 @@ namespace FinalProject {
         void Add_Passenger_To_Flight();
         // Overloaded to handle input from external file
         void Add_Passenger_To_Flight(std::string fName, std::string lName, int age_used, int row_used, int seat_used);
+        // Overloaded to handle the addition of an already created passenger
+        void Add_Passenger_To_Flight(Passenger *passenger_used, int row_used, int seat_used);
 
         // Print Names of all passengers
         void Print_Passenger_List();
@@ -44,6 +46,9 @@ namespace FinalProject {
 
         // Retunr amount of passengers on flight
         int Return_Passengers_Booked();
+
+        // Return Passenger Object
+        Passenger* Return_Passenger_Object(int object_iter);
 
         // Print Useful info about flight
         void Print_Flight_Data();

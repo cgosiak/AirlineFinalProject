@@ -3,13 +3,25 @@
 
 
 namespace FinalProject {
+
     class Flight; //  Must do this to resolve circular dependency between Flight and Passenger Objects
     class Seat; //  Must do this to resolve circular dependency between Seat and Passenger Objects
-    class Passenger {
+
+
+    class Passenger {/**
+         * Retrieves and stores passenger information and also links to assigned flights and seats.
+         * @param {string} str The string to repeat.
+         * @param {number} [times=1] How many times to repeat the string.
+         * @returns {string}
+         */
+
+
         public:
+
             Passenger();
+
             // Overloaded constructor to read form text file
-            Passenger(std::string fName, std::string lName, int age_used, int row_used, int seat_used);
+            Passenger(std::string fName /**< [in] docs for input parameter v. */, std::string lName, int age_used, int row_used, int seat_used);
 
             // Get Full Name
             std::string Get_Name();
@@ -28,6 +40,9 @@ namespace FinalProject {
 
             // Assign Row and Seat
             void Assign_Row_Seat(int row_used, int seat_used);
+
+            // get age of passenger
+            int Get_Age();
 
             // This is used to get a string to write to external file!
             std::string Get_Writable_Data(int flight_num);

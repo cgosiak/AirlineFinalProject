@@ -137,27 +137,62 @@ namespace FinalProject {
         switch (usersChoice) {
             case 1:
                 if (selected_flight->Is_Assigned()) {
-                    selected_flight->Add_Passenger_To_Flight();
+                    cout << "Do you need to create a new passenger? ";
+                    if (useThis.Yes_No_Question()) {
+                        selected_flight->Add_Passenger_To_Flight();
 
-                    // Print Seat Mapping Quick
-                    selected_flight->assigned_plane->Print_seat_map();
+                        // Print Seat Mapping Quick
+                        selected_flight->assigned_plane->Print_seat_map();
 
-                    // Assign Seat
-                    int row_user;
-                    int seat_user;
+                        // Assign Seat
+                        int row_user;
+                        int seat_user;
 
-                    std::string userSeat;
+                        std::string userSeat;
 
-                    cout << "Row for Reservation: ";
-                    cin >> row_user;
+                        cout << "Row for Reservation: ";
+                        cin >> row_user;
 
-                    cout << "Seat for Reservation: ";
-                    cin >> userSeat;
+                        cout << "Seat for Reservation: ";
+                        cin >> userSeat;
 
-                    seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
-                    row_user--;
+                        seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
+                        row_user--;
 
-                    selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user, selected_flight->most_recently_added);
+                        selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
+                                                                                    selected_flight->most_recently_added);
+
+                        all_passengers[current_passenger_amount] = selected_flight->most_recently_added; // add the most recently added passenger to the list of all passengers
+                        current_passenger_amount++;
+                    }
+                    else {
+                        // Need to use an old passenger
+                        Select_Passenger();
+
+                        // Print Seat Mapping Quick
+                        selected_flight->assigned_plane->Print_seat_map();
+
+                        // Assign Seat
+                        int row_user;
+                        int seat_user;
+
+                        std::string userSeat;
+
+                        cout << "Row for Reservation: ";
+                        cin >> row_user;
+
+                        cout << "Seat for Reservation: ";
+                        cin >> userSeat;
+
+
+                        seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
+                        row_user--;
+
+                        selected_flight->Add_Passenger_To_Flight(selected_passenger,row_user,seat_user);
+
+                        selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
+                                                                                    selected_flight->most_recently_added);
+                    }
                 }
                 else {
                     cout << "Plane Not Yet Assigned to Flight! Cannot Add Passengers..." << std::endl;
@@ -399,6 +434,8 @@ namespace FinalProject {
                             current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned - 1),
                                                                                            (seat_assigned - 1),
                                                                                            current_flights[j]->most_recently_added);
+                            all_passengers[current_passenger_amount] = current_flights[j]->most_recently_added; // add the most recently added passenger to the list of all passengers
+                            current_passenger_amount++;
                         }
                     }
                 }
@@ -743,5 +780,40 @@ namespace FinalProject {
                 Return_Flight();
             }
         }
+    }
+
+    void Airport::Select_Passenger() {
+        // First Print all passengers
+        for (int i = 0; i < current_passenger_amount; ++i) {
+            if (i == 0) {
+                cout << "List of Available Passengers:" << std::endl;
+                cout << "______________________________________" << std::endl;
+                cout << "| NUM | PASSENGER NAME         | AGE |" << std::endl;
+                cout << "--------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(22) << all_passengers[i]->Get_Name() << " | " << std::setw(3) << all_passengers[i]->Get_Age() << " |" << std::endl;
+                cout << "--------------------------------------" << std::endl;
+            }
+            else {
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(22) << all_passengers[i]->Get_Name() << " | " << std::setw(3) << all_passengers[i]->Get_Age() << " |" << std::endl;
+                cout << "--------------------------------------" << std::endl;
+            }
+        }
+        int selection_user;
+        cout << "Enter the NUM Value of the Passenger You Would Like to Select: ";
+        cin >> selection_user;
+
+        if (selection_user < 1 || selection_user > current_passenger_amount) {
+            // Invalid
+            cout << "Invalid Selection!" << std::endl;
+        }
+        else {
+            // valid
+            selected_passenger = all_passengers[selection_user-1];
+        }
+    }
+
+    bool Airport::Passenger_Options() {
+        cout << "\nPassenger Options for: " << selected_passenger->Get_Name() << std::endl;
+        return false;
     }
 }
