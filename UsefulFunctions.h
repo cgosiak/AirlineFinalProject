@@ -5,6 +5,8 @@
 #ifndef MYPROGRAM3_USEFULFUNCTIONS_H
 #define MYPROGRAM3_USEFULFUNCTIONS_H
 
+#include <ctime>
+
 
 namespace FinalProject {
     class UsefulFunctions {
@@ -15,6 +17,7 @@ namespace FinalProject {
         int getIntFromSeatLetter(std::string seatLetterUsed);
         std::string getSeatLetterFromInt(int seatInt);
         std::string getStringfromInt(int myInput);
+        int Days_Difference(time_t first_date, time_t second_date);
     };
 }
 

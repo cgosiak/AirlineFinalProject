@@ -11,6 +11,11 @@ bool user_selections(FinalProject::Airport& airport);
 int main() {
     using FinalProject::Airport;
 
+    // Testing Time Stuff
+    std::time_t now = time(0);
+    char* dt = ctime(&now);
+    cout << "Current Date/Time: " << dt << std::endl;
+
     // Construct Airport
     Airport myAirport;
 

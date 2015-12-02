@@ -11,7 +11,7 @@ namespace FinalProject {
         // Default Constructor
         Flight();
         // Overloaded to read from input file
-        Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int assigned_plane_used);
+        Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int dep_hr, int dep_min, int arr_yr, int arr_mt, int arr_dy, int arr_hr, int arr_min, int assigned_plane_used);
 
         // Print the Flight name
         void Print_Flight_Num();
@@ -38,9 +38,6 @@ namespace FinalProject {
 
         // Get Destination
         std::string Get_Destination();
-
-        // Printable Departure Date
-        std::string Get_Departure_Date();
 
         // Get number of seats available
         int Get_Seats_Available();
@@ -75,6 +72,15 @@ namespace FinalProject {
         // Update Passengers, like when a new plane is assigned
         void Update_Passengers();
 
+        // Get Time Departing
+        std::string Get_Time_Departing();
+
+        // Get Time Arriving
+        std::string Get_Time_Arriving();
+
+        // date structure
+        time_t departure_date;
+
     private:
         // Name of Flight
         int flight_num;
@@ -89,10 +95,11 @@ namespace FinalProject {
         std::string destination;
 
         // Date of Flight Departure
-        int day,month,year;
+        int day,month,year,hour,minute;
 
-        // Flight Time in Air
-        int hours,mins;
+        // Date Structure
+        time_t arrival_date;
+        time_t current_date;
 
         // Days to flight
         int days_to_flight;

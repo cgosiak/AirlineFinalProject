@@ -103,6 +103,9 @@ namespace FinalProject {
         // Return a flight
         void Return_Flight();
 
+        // Order flights by date
+        void Order_Flights_By_Date();
+
 
     private:
         int current_flight_amount = 0;

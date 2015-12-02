@@ -6,3 +6,4 @@ first_name=Marty$last_name=Wolf$age=50$flight=4444$row=2$seat=2
 first_name=Brayden$last_name=Larson$age=70$flight=4444$row=3$seat=2
 first_name=Matthew$last_name=Larson$age=80$flight=4444$row=4$seat=4
 first_name=Pablo$last_name=FakeName$age=95$flight=4444$row=4$seat=2
+first_name=Tony$last_name=Hawk$age=40$flight=7689$row=6$seat=3

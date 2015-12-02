@@ -2,12 +2,11 @@
 // Created by caleb on 10/13/15.
 //
 #include <iostream>
-#include <cctype>
-#include <cstdlib>
 #include <set>
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <ctime>
 
 using std::istream;
 using std::ostream;
@@ -156,5 +155,15 @@ namespace FinalProject {
 
         // Return the string
         return theStringfromNumber;
+    }
+
+    int UsefulFunctions::Days_Difference(time_t first_date, time_t second_date) {
+        int diff_integer = 0;
+        if ( first_date != (time_t)(-1) && second_date != (time_t)(-1) )
+        {
+            double difference = difftime(second_date, first_date) / (60 * 60 * 24);
+            diff_integer = ceil(difference);
+            return diff_integer;
+        }
     }
 }

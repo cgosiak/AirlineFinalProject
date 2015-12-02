@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using std::istream;
 using std::ostream;
@@ -44,15 +45,15 @@ namespace FinalProject {
         for (int i = 0; i < current_flight_amount; ++i) {
             if (i == 0) {
                 cout << "List of Upcoming Flights:" << std::endl;
-                cout << "_____________________________________________________________________________" << std::endl;
-                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | OPEN SEATS | ASSIGNED PLANE |" << std::endl;
-                cout << "-----------------------------------------------------------------------------" << std::endl;
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
-                cout << "-----------------------------------------------------------------------------" << std::endl;
+                cout << "_____________________________________________________________________________________________________________" << std::endl;
+                cout << "| NUM | FLIGHT NUMBER | DEST | DEPARTURE DATE | ARRIVAL DATE | OPEN SEATS | ASSIGNED PLANE | DAYS TO FLIGHT |" << std::endl;
+                cout << "-------------------------------------------------------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Time_Departing() << " |" << std::setw(13) << current_flights[i]->Get_Time_Arriving() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::setw(14) << current_flights[i]->Get_Days_To_Flight() << " | " << std::endl;
+                cout << "-------------------------------------------------------------------------------------------------------------" << std::endl;
             }
             else {
-                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Departure_Date() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::endl;
-                cout << "-----------------------------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(13) << current_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << current_flights[i]->Get_Destination() << " |" << std::setw(15) << current_flights[i]->Get_Time_Departing() << " |" << std::setw(13) << current_flights[i]->Get_Time_Arriving() << " |"  << std::setw(11) << current_flights[i]->Get_Seats_Available() << " |"  << std::setw(15) << current_flights[i]->Get_Plane_Num() << " | " << std::setw(14) << current_flights[i]->Get_Days_To_Flight() << " | " << std::endl;
+                cout << "-------------------------------------------------------------------------------------------------------------" << std::endl;
             }
         }
     }
@@ -498,7 +499,11 @@ namespace FinalProject {
         int depart_year;
         int depart_month;
         int depart_day;
+        int depart_hr;
+        int depart_min;
+        int a_yr, a_mt, a_dy, a_hr, a_min;
         int plane;
+
 
         // input file
         if (current_flight_amount > 0) {
@@ -538,8 +543,50 @@ namespace FinalProject {
                                             depart_day = std::stoi(line_read);
                                         }
                                         else {
-                                            line_read.erase(0, 15);
-                                            plane = std::stoi(line_read);
+                                            if (line_read.find("departure_hour") != std::string::npos) {
+                                                line_read.erase(0, 15);
+                                                depart_hr = std::stoi(line_read);
+                                            }
+                                            else {
+                                                if (line_read.find("departure_minute") != std::string::npos) {
+                                                    line_read.erase(0, 17);
+                                                    depart_min = std::stoi(line_read);
+                                                }
+                                                else {
+                                                    if (line_read.find("arrival_year") != std::string::npos) {
+                                                        line_read.erase(0, 13);
+                                                        a_yr = std::stoi(line_read);
+                                                    }
+                                                    else {
+                                                        if (line_read.find("arrival_month") != std::string::npos) {
+                                                            line_read.erase(0, 14);
+                                                            a_mt = std::stoi(line_read);
+                                                        }
+                                                        else {
+                                                            if (line_read.find("arrival_day") != std::string::npos) {
+                                                                line_read.erase(0, 12);
+                                                                a_dy = std::stoi(line_read);
+                                                            }
+                                                            else {
+                                                                if (line_read.find("arrival_hour") != std::string::npos) {
+                                                                    line_read.erase(0, 13);
+                                                                    a_hr = std::stoi(line_read);
+                                                                }
+                                                                else {
+                                                                    if (line_read.find("arrival_minute") != std::string::npos) {
+                                                                        line_read.erase(0, 15);
+                                                                        a_min = std::stoi(line_read);
+                                                                    }
+                                                                    else {
+                                                                        line_read.erase(0, 15);
+                                                                        plane = std::stoi(line_read);
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -547,7 +594,7 @@ namespace FinalProject {
                         }
                     }
                     // Everything read, create flight
-                    current_flights[i] = new Flight(flight_num,destination,depart_year,depart_month,depart_day,plane);
+                    current_flights[i] = new Flight(flight_num,destination,depart_year,depart_month,depart_day,depart_hr,depart_min,a_yr,a_mt,a_dy,a_hr,a_min,plane);
                     // Flight is already assigned to a plane in external data
                     if (plane > 0) {
                         for (int j = 0; j < current_plane_amount; ++j) {
@@ -633,6 +680,7 @@ namespace FinalProject {
             myFile.close();
         }
     }
+    // Basically it moves all flights that are not being deleted into the pointer array in positions 0 - previous length -1
 
     void Airport::Save_State_Flights() {
         std::string file_name;
@@ -647,7 +695,6 @@ namespace FinalProject {
 
     void Airport::Return_Flight() {
         // This is a cool algorithm I, Caleb, wrote to remove a flight.
-        // Basically it moves all flights that are not being deleted into the pointer array in positions 0 - previous length -1
         // The last pointer still exist, however we decrement the flight amount by 1, and the last element becomes inaccessible.
 
         int iter_gator = 0; // chomp chomp
@@ -664,5 +711,35 @@ namespace FinalProject {
             }
         }
         current_flight_amount--; // decrement available flights
+    }
+
+    void Airport::Order_Flights_By_Date() {
+//        // Need to sort flights by date
+//        // we will sort by days to flight
+//        time_t days_array[current_flight_amount];
+//        for (int i = 0; i < current_flight_amount; ++i) {
+//            days_array[i] = current_flights[i]->departure_date;
+//        }
+//
+//        // sort array
+//        std::sort(std::begin(days_array),std::end(days_array));
+//
+//        // now reiterate, with a new array of pointers
+//        Flight *new_sorted_array[current_flight_amount];
+//
+//        for (int j = 0; j < current_flight_amount; ++j) {
+//            time_t required_time = days_array[j];
+//            for (int i = 0; i < current_flight_amount; ++i) {
+//                if (current_flights[i]->departure_date == required_time) {
+//                    new_sorted_array[j] = current_flights[i];
+//                }
+//            }
+//        }
+//
+//        // reset the flights list to represent changes
+//        for (int k = 0; k < current_flight_amount; ++k) {
+//            current_flights[k] = new_sorted_array[k];
+//        }
+//
     }
 }

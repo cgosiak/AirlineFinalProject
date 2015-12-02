@@ -1,16 +1,21 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <ctime>
 using std::istream;
 using std::ostream;
 using std::cout;
 using std::cin;
 
 #include "Flight.h"
+#include "UsefulFunctions.h"
 
 namespace FinalProject {
 
     Flight::Flight() {
+        // quick lets get the current date/time
+        current_date = time(0); // gets a date/time stamp
+
         cout << "Let's Setup Your New Flight!" << std::endl;
         cout << "----------------------------" << std::endl;
         cout << "Enter Flight Number: ";
@@ -21,17 +26,108 @@ namespace FinalProject {
         cin >> destination;
         cout << std::endl;
 
-        cout << "Enter Departure Year: ";
+        cout << "Departure Information" << std::endl;
+        cout << "----------------------------" << std::endl;
+
+        cout << "Enter Departure Year (ex. 2016): ";
         cin >> year;
+        year = year - 1900; // this is how it works in date format
         cout << std::endl;
 
-        cout << "Enter Departure Month: ";
+        cout << "Enter Departure Month (ex. 09): ";
         cin >> month;
+        month--; // this is how it works in date format
         cout << std::endl;
 
-        cout << "Enter Departure Day: ";
+        cout << "Enter Departure Day (ex. 2): ";
         cin >> day;
         cout << std::endl;
+
+        cout << "Enter Departure Hour (ex. 8): ";
+        cin >> hour;
+        cout << std::endl;
+
+        cout << "Enter Departure Minute (ex. 30): ";
+        cin >> minute;
+        cout << std::endl;
+
+        UsefulFunctions useThis;
+        cout << "Is this a morning flight? (prior to noon) ";
+        if (useThis.Yes_No_Question()) {
+            // AM Flight
+        }
+        else {
+            // PM Flight
+            if (hour <= 12 && hour > 0) {
+                // add 12 hours
+                hour = hour + 12;
+
+                // If it is 24
+                if (hour == 24) {
+                    hour = 0;
+                }
+            }
+            else if (hour > 12 && hour < 24) {
+                // Everything is good
+            }
+        }
+
+        // make destination time
+        // date format
+        struct tm dest_time = {0,minute,hour,day,month,year};
+        departure_date = mktime(&dest_time);
+
+        cout << "Arrival Information" << std::endl;
+        cout << "----------------------------" << std::endl;
+
+        cout << "Enter Arrival Year (ex. 2016): ";
+        cin >> year;
+        year = year - 1900; // this is how it works in date format
+        cout << std::endl;
+
+        cout << "Enter Arrival Month (ex. 09): ";
+        cin >> month;
+        month--; // this is how it works in date format
+        cout << std::endl;
+
+        cout << "Enter Arrival Day (ex. 2): ";
+        cin >> day;
+        cout << std::endl;
+
+        cout << "Enter Arrival Hour (ex. 8): ";
+        cin >> hour;
+        cout << std::endl;
+
+        cout << "Enter Arrival Minute (ex. 30): ";
+        cin >> minute;
+        cout << std::endl;
+
+        cout << "Is this a morning arrival? (prior to noon) ";
+        if (useThis.Yes_No_Question()) {
+            // AM Flight
+        }
+        else {
+            // PM Flight
+            if (hour <= 12 && hour > 0) {
+                // add 12 hours
+                hour = hour + 12;
+
+                // If it is 24
+                if (hour == 24) {
+                    hour = 0;
+                }
+            }
+            else if (hour > 12 && hour < 24) {
+                // Everything is good
+            }
+        }
+
+        // make destination time
+        // date format
+        struct tm arri_time = {0,minute,hour,day,month,year};
+        arrival_date = mktime(&arri_time);
+
+        Update_Days_To_Flight();
 
         cout << std::endl;
     }
@@ -45,11 +141,14 @@ namespace FinalProject {
     }
 
     void Flight::Update_Days_To_Flight() {
-        int days_to = 0;
+        UsefulFunctions useThis;
 
-        // Write Function to update days to flight
+        // update current time
+        current_date = time(0); // gets a date/time stamp
+        cout << "Current Date: " << ctime(&current_date);
 
-        days_to_flight = days_to;
+        // Set days to flight using difference function
+        days_to_flight = useThis.Days_Difference(current_date,departure_date);
     }
 
     void Flight::Assign_New_Plane() {
@@ -65,10 +164,7 @@ namespace FinalProject {
     }
 
     int Flight::Get_Days_To_Flight() {
-        int days_left = 0;
-        // Write function to return days between current date and departure date
-
-        return days_left;
+        return days_to_flight;
     }
 
     void Flight::Add_Passenger_To_Flight() {
@@ -107,13 +203,6 @@ namespace FinalProject {
         return destination;
     }
 
-    std::string Flight::Get_Departure_Date() {
-        std::string depart_day;
-        // make nice looking date format MM-DD-YYYY
-        depart_day = std::to_string(month) + "-" + std::to_string(day) + "-" + std::to_string(year);
-        return depart_day;
-    }
-
     int Flight::Get_Seats_Available() {
         if (plane_assigned) {
             // max amount of passengers is rows * seats per row
@@ -138,7 +227,7 @@ namespace FinalProject {
             cout << std::endl;
             cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
             cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
-            cout << "Date: " << Get_Departure_Date() << std::endl;
+            cout << "Date: " << Get_Time_Departing() << std::endl;
             cout << "Plane: " << assigned_plane->Get_Flight_Num() << std::endl; // need to add plane data
             cout << "Available Seats: " << seats_available << std::endl;
         }
@@ -146,7 +235,7 @@ namespace FinalProject {
             cout << std::endl;
             cout << "Flight " << Get_Flight_Num() << " Information:" << std::endl;
             cout << "Departure: " << departure << " | Destination: " << destination << std::endl;
-            cout << "Date: " << Get_Departure_Date() << std::endl;
+            cout << "Date: " << Get_Time_Departing() << std::endl;
             cout << "Plane: Not Set"  << std::endl; // need to add plane data
             cout << "Available Seats: 0" << std::endl;
         }
@@ -202,12 +291,47 @@ namespace FinalProject {
         return plane_assigned;
     }
 
-    Flight::Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int assigned_plane_used) {
+    Flight::Flight(int flight_num_used, std::string dest, int dep_yr, int dep_mt, int dep_dy, int dep_hr, int dep_min, int arr_yr, int arr_mt, int arr_dy, int arr_hr, int arr_min, int assigned_plane_used) {
         flight_num = flight_num_used;
         destination = dest;
+
+        // departure times
         year = dep_yr;
         month = dep_mt;
         day = dep_dy;
+        hour = dep_hr;
+        minute = dep_min;
+
+        // format for date creation
+        month = month - 1;
+        year = year - 1900;
+
+        // make destination time
+        // date format
+        struct tm dest_time = {0,minute,hour,day,month,year};
+        departure_date = mktime(&dest_time);
+        cout << "Departure Date Created: " << ctime(&departure_date);
+
+        // arrival times
+        year = arr_yr;
+        month = arr_mt;
+        day = arr_dy;
+        hour = arr_hr;
+        minute = arr_min;
+
+        // format for date creation
+        month = month - 1;
+        year = year - 1900;
+
+        // make destination time
+        // date format
+        struct tm arri_time = {0,minute,hour,day,month,year};
+        arrival_date = mktime(&arri_time);
+
+        cout << "Arrival Date Created: " << ctime(&arrival_date);
+
+        // Update
+        Update_Days_To_Flight();
     }
 
     void Flight::Add_Passenger_To_Flight(std::string fName, std::string lName, int age_used, int row_used, int seat_used) {
@@ -230,18 +354,28 @@ namespace FinalProject {
 
     std::string Flight::Get_Writable_Packet() {
         std::string packet_to_use;
+        tm dep_times = *localtime(&departure_date);
+        tm arr_times = *localtime(&arrival_date);
 
         if (plane_assigned) {
             packet_to_use =
                     "flight_num=" + std::to_string(flight_num) + "\ndestination=" + destination + "\ndeparture_year=" +
-                    std::to_string(year) + "\ndeparture_month=" + std::to_string(month) + "\ndeparture_day=" +
-                    std::to_string(day) + "\nassigned_plane=" + std::to_string(assigned_plane->Get_Flight_Num());
+                    std::to_string(dep_times.tm_year + 1900) + "\ndeparture_month=" + std::to_string(dep_times.tm_mon + 1) + "\ndeparture_day=" +
+                    std::to_string(dep_times.tm_mday) + "\ndeparture_hour=" + std::to_string(dep_times.tm_hour) + "\ndeparture_minute=" +
+                    std::to_string(dep_times.tm_min) + "\narrival_year=" + std::to_string(arr_times.tm_year + 1900) + "\narrival_month=" +
+                    std::to_string(arr_times.tm_mon + 1) + "\narrival_day=" + std::to_string(arr_times.tm_mday) + "\narrival_hour=" +
+                    std::to_string(arr_times.tm_hour) + "\narrival_minute=" + std::to_string(arr_times.tm_min) +
+                    "\nassigned_plane=" + std::to_string(assigned_plane->Get_Flight_Num());
         }
         else {
             packet_to_use =
                     "flight_num=" + std::to_string(flight_num) + "\ndestination=" + destination + "\ndeparture_year=" +
-                    std::to_string(year) + "\ndeparture_month=" + std::to_string(month) + "\ndeparture_day=" +
-                    std::to_string(day) + "\nassigned_plane=" + std::to_string(0);
+                    std::to_string(dep_times.tm_year + 1900) + "\ndeparture_month=" + std::to_string(dep_times.tm_mon + 1) + "\ndeparture_day=" +
+                    std::to_string(dep_times.tm_mday) + "\ndeparture_hour=" + std::to_string(dep_times.tm_hour) + "\ndeparture_minute=" +
+                    std::to_string(dep_times.tm_min) + "\narrival_year=" + std::to_string(arr_times.tm_year + 1900) + "\narrival_month=" +
+                    std::to_string(arr_times.tm_mon + 1) + "\narrival_day=" + std::to_string(arr_times.tm_mday) + "\narrival_hour=" +
+                    std::to_string(arr_times.tm_hour) + "\narrival_minute=" + std::to_string(arr_times.tm_min) +
+                    "\nassigned_plane=" + std::to_string(0);
         }
 
         return packet_to_use;
@@ -251,5 +385,37 @@ namespace FinalProject {
         for (int i = 0; i < assigned_passengers; ++i) {
             assigned_plane->Reserve_From_External_File(passengers[i]->row,passengers[i]->seat,passengers[i]);
         }
+    }
+
+    std::string Flight::Get_Time_Departing() {
+        tm my_time = *localtime(&departure_date);
+        std::string departure_date_string;
+        if (my_time.tm_min < 10) {
+            departure_date_string =
+                    std::to_string(my_time.tm_mon + 1) + "-" + std::to_string(my_time.tm_mday) + " " +
+                    std::to_string(my_time.tm_hour) + ":0" + std::to_string(my_time.tm_min);
+        }
+        else {
+            departure_date_string =
+                    std::to_string(my_time.tm_mon + 1) + "-" + std::to_string(my_time.tm_mday) + " " +
+                    std::to_string(my_time.tm_hour) + ":" + std::to_string(my_time.tm_min);
+        }
+        return departure_date_string;
+    }
+
+    std::string Flight::Get_Time_Arriving() {
+        tm my_time = *localtime(&arrival_date);
+        std::string arrival_date_string;
+        if (my_time.tm_min < 10) {
+            arrival_date_string =
+                    std::to_string(my_time.tm_mon + 1) + "-" + std::to_string(my_time.tm_mday) + " " +
+                    std::to_string(my_time.tm_hour) + ":0" + std::to_string(my_time.tm_min);
+        }
+        else {
+            arrival_date_string =
+                    std::to_string(my_time.tm_mon + 1) + "-" + std::to_string(my_time.tm_mday) + " " +
+                    std::to_string(my_time.tm_hour) + ":" + std::to_string(my_time.tm_min);
+        }
+        return arrival_date_string;
     }
 }
