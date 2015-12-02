@@ -200,7 +200,6 @@ namespace FinalProject {
                 break;
             case 6:
                 selected_flight->Print_Flight_Data();
-                Print_Seat_Map();
                 break;
             case 7:
                 break;

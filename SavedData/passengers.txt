@@ -1,9 +1,12 @@
-first_name=Caleb$last_name=Gosiak$age=21$flight=9999$row=1$seat=1
-first_name=Tessa$last_name=Rahn$age=21$flight=9999$row=1$seat=2
-first_name=Thai$last_name=Curry$age=50$flight=9999$row=2$seat=2
+first_name=Tony$last_name=Hawk$age=40$flight=7689$row=6$seat=3
+first_name=Hawk$last_name=Eye$age=32$flight=7689$row=8$seat=4
+first_name=Bruce$last_name=Banner$age=31$flight=7689$row=2$seat=12
 first_name=Thai$last_name=Curry$age=50$flight=4444$row=1$seat=2
 first_name=Marty$last_name=Wolf$age=50$flight=4444$row=2$seat=2
 first_name=Brayden$last_name=Larson$age=70$flight=4444$row=3$seat=2
 first_name=Matthew$last_name=Larson$age=80$flight=4444$row=4$seat=4
 first_name=Pablo$last_name=FakeName$age=95$flight=4444$row=4$seat=2
-first_name=Tony$last_name=Hawk$age=40$flight=7689$row=6$seat=3
+first_name=Bobby$last_name=Flay$age=46$flight=4444$row=4$seat=1
+first_name=Caleb$last_name=Gosiak$age=21$flight=9999$row=1$seat=1
+first_name=Tessa$last_name=Rahn$age=21$flight=9999$row=1$seat=2
+first_name=Thai$last_name=Curry$age=50$flight=9999$row=2$seat=2

@@ -37,9 +37,6 @@ namespace FinalProject {
         // Print Out the Seat Data
         void Print_seat_data();
 
-        // This will be only for program 3
-        void Program3(int newDaystoFlight, int distToDestination);
-
         // Sets days to flight
         void Set_Days_to_Flight(int newDays);
 

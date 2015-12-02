@@ -21,11 +21,8 @@ namespace FinalProject {
     Plane::Plane(int rows, int seats) {
         plane_rows = rows;
         plane_seats_per_row = seats;
-        printableDepartYear = departYear + 1900;
 
-        Plane::Generate_seat_map();
-        Plane::Get_current_time();
-        Plane::Get_days_to_departure();
+        Generate_seat_map();
     }
 
     Plane::Plane() {
@@ -43,11 +40,7 @@ namespace FinalProject {
         cin >> plane_seats_per_row;
         cout << std::endl;
 
-        printableDepartYear = departYear + 1900;
-
-        Plane::Generate_seat_map();
-        Plane::Get_current_time();
-        Plane::Get_days_to_departure();
+        Generate_seat_map();
     }
 
     void Plane::Show_plane_data() {
@@ -58,62 +51,6 @@ namespace FinalProject {
         cout << "Departure Date: " << departMonth << "-" << departDay << "-" << printableDepartYear << std::endl;
         cout << "Days to Flight: " << daysToFlight << std::endl;
         cout << "Current Seats Avaialble: " << plane_seat_map->Seats_available() << std::endl;
-    }
-
-    void Plane::Change_plane_defaults() {
-        Plane::Change_flight_number();
-        Plane::Change_airline_name();
-        Plane::Change_leaving_name();
-        Plane::Change_destination_name();
-        Plane::Change_departure_date();
-    }
-
-    void Plane::Change_flight_number(int newFlightNum) {
-        flightNumber = newFlightNum;
-    }
-
-    void Plane::Change_flight_number() {
-        int newFlightNum;
-
-        cout << "Enter New Flight Num: ";
-        cin >> newFlightNum;
-        flightNumber = newFlightNum;
-    }
-
-    void Plane::Change_airline_name(std::string newAirlineName) {
-        airLineName = newAirlineName;
-    }
-
-    void Plane::Change_airline_name() {
-        std::string newAirlineName;
-
-        cout << "Enter New Airline Name: ";
-        cin >> newAirlineName;
-        airLineName = newAirlineName;
-    }
-
-    void Plane::Change_leaving_name(std::string newLeavingName) {
-        leavingAirport = newLeavingName;
-    }
-
-    void Plane::Change_leaving_name() {
-        std::string newLeavingName;
-
-        cout << "Enter New Departing Airport Name: ";
-        cin >> newLeavingName;
-        leavingAirport = newLeavingName;
-    }
-
-    void Plane::Change_destination_name(std::string newArrivalName) {
-        destinationAirport = newArrivalName;
-    }
-
-    void Plane::Change_destination_name() {
-        std::string newArrivalName;
-
-        cout << "Enter New Destination Airport Name: ";
-        cin >> newArrivalName;
-        destinationAirport = newArrivalName;
     }
 
     void Plane::Generate_seat_map() {
@@ -270,10 +207,6 @@ namespace FinalProject {
 
 
         plane_seat_map->Return_seat(row,seat);
-    }
-
-    void Plane::WriteToExternal() {
-        plane_seat_map->WriteDataToFile();
     }
 
     int Plane::Get_Flight_Num() {

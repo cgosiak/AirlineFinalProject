@@ -16,15 +16,15 @@ using std::cin;
 namespace FinalProject {
 
     Seat::Seat(double basePriceOfSeat, int daysLeftToFlight, int row, int seat, bool isIsle) {
-        FinalProject::UsefulFunctions useThis;
+        UsefulFunctions useThis;
         std::string seatName = useThis.getStringfromInt(row+1)+useThis.getSeatLetterFromInt(seat);
         seatSpace = seat;
         mySeatLetter = useThis.getSeatLetterFromInt(seat);
         reserved = false;
         daysToFlight = daysLeftToFlight;
         mySeatName = seatName;
-        Seat::Set_base_cost_of_seat(basePriceOfSeat);
-        Seat::Get_cost_of_seat();
+        Set_base_cost_of_seat(basePriceOfSeat);
+        Get_cost_of_seat();
         if (isIsle) {
             mySeatLetter = " ";
             reserved = true;
@@ -55,16 +55,23 @@ namespace FinalProject {
 
         switch (typeOfSeat) {
             case 1:
+                seat_type = 1;
                 seatingType = "First Class";
+                Get_cost_of_seat();
                 break;
             case 2:
+                seat_type = 2;
                 seatingType = "Economy";
+                Get_cost_of_seat();
                 break;
             case 3:
+                seat_type = 3;
                 seatingType = "Economy Plus";
+                Get_cost_of_seat();
                 break;
             default:
                 seatingType = "Economy";
+                Get_cost_of_seat();
                 break;
         }
     }
@@ -76,7 +83,6 @@ namespace FinalProject {
     double Seat::Get_cost_of_seat() {
         double flightCost;
         double multiplier = 1.0;
-        std::string seatingName = "";
 
         // this is a switch controlling the direction of the program based on the user input
         switch (seat_type) {
@@ -100,7 +106,7 @@ namespace FinalProject {
                     return 0.00;
                 }
                 flightCost = base_cost * multiplier;
-                seatingName = "First Class";
+                seatingType = "First Class";
                 break;
             case 2:
                 // Economy Class
@@ -122,7 +128,7 @@ namespace FinalProject {
                     return 0.00;
                 }
                 flightCost = base_cost * multiplier;
-                seatingName = "Economy";
+                seatingType = "Economy";
                 break;
             case 3:
                 // Economy Plus Class
@@ -144,7 +150,7 @@ namespace FinalProject {
                     return 0.00;
                 }
                 flightCost = base_cost * multiplier;
-                seatingName = "Economy Plus";
+                seatingType = "Economy Plus";
                 break;
             default:
                 // every other case, just as an exception, but should already be sanitized prior to
@@ -196,26 +202,6 @@ namespace FinalProject {
     void Seat::Set_Days_to_Flight(int newDays) {
         daysToFlight = newDays;
         Seat::Get_cost_of_seat();
-    }
-
-    void Seat::Program3(int newDaystoFlight, int distToDestination) {
-        Seat::Set_Days_to_Flight(newDaystoFlight);
-        if (seat_type == 3) {
-            // Only do this for ECONOMY PLUS for some reason
-            // Seat Fees are set by flight distance as follows
-            if (distToDestination < 800) {
-                seatFees = 75;
-            }
-            else {
-                seatFees = 125;
-            }
-            // If it is purchased between 0 and 29 days
-            if (newDaystoFlight < 30) {
-                seatFees+=10;
-            }
-        }
-        Seat::Get_cost_of_seat();
-        Seat::Print_seat_data();
     }
 
     void Seat::Assign_Passenger(Passenger *input_pass) {

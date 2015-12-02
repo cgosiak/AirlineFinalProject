@@ -20,17 +20,16 @@ namespace FinalProject {
     SeatMap::SeatMap(int rows, int seats_per_row) {
         plane_rows = rows;
         plane_seats_per_row = seats_per_row;
-        SeatMap::Generate_seats();
+        Generate_seats();
     }
 
     void SeatMap::Print_seat_map() {
         UsefulFunctions useThis;
         cout << "SEAT MAP--------------------" << std::endl;
         cout << "ROWS: " << plane_rows << " | Seats: " << plane_seats_per_row << std::endl;
-        for (int rowNum = 0; rowNum < plane_rows; ++rowNum) {
+        for (int rowNum = 0; rowNum < plane_rows; rowNum++) {
             std::string rowToPrint = useThis.getStringfromInt(rowNum+1) + ":";
             for (int seatNum = 0; seatNum <= plane_seats_per_row; seatNum++) {
-                Seats[rowNum][seatNum]->Assign_seat_type(1);
                 rowToPrint += " " + Seats[rowNum][seatNum]->Get_seat_letter();
             }
             cout << rowToPrint << std::endl;
@@ -56,26 +55,21 @@ namespace FinalProject {
                     isIsle = false;
                 }
                 Seats[rowNum][seatNum] = new Seat(1000.00, 3, rowNum, seatNum, isIsle);
-                // This will need to be replaced
-                // Seats[rowNum][seatNum]->Assign_seat_type(1);
-
-                // First Class is always the first 3 Rows of a plane!
-                if (rowNum >= 0 && rowNum <= 3) {
-                    // First Class
+                if (rowNum > 0 && rowNum <=3) {
+                    // First class
                     Seats[rowNum][seatNum]->Assign_seat_type(1);
                 }
                 else {
-                    // Rows 4-7 are always Economy Plus for the sake of the assignment
-                    if (rowNum >= 4 && rowNum <= 7) {
+                    if (rowNum > 3 && rowNum <=7) {
                         // Economy Plus
                         Seats[rowNum][seatNum]->Assign_seat_type(3);
                     }
                     else {
-                        // The rest of the rows will always be economy
                         // Economy
                         Seats[rowNum][seatNum]->Assign_seat_type(2);
                     }
                 }
+
             }
             }
     }
@@ -127,34 +121,7 @@ namespace FinalProject {
         }
     }
 
-    void SeatMap::WriteDataToFile() {
-        UsefulFunctions useThis;
-        std::string writeThisSeat;
-
-        std::ofstream updateFile;
-        updateFile.open("newPlane.txt");
-
-        int isleSeat = floor((plane_seats_per_row+1)/2);
-
-        updateFile << plane_rows << " " << plane_seats_per_row << "\n";
-        for (int rowNum = 0; rowNum < plane_rows; ++rowNum) {
-            for (int seatNum = 0; seatNum <= plane_seats_per_row; seatNum++) {
-                if (seatNum == isleSeat) {
-                    // DOnt Write to File
-                }
-                else {
-                    if (Seats[rowNum][seatNum]->Seat_reserved()) {
-                        writeThisSeat = (std::to_string(rowNum + 1) + useThis.getSeatLetterFromInt(seatNum));
-                        updateFile << writeThisSeat << "\n";
-                    }
-                }
-            }
-        }
-        updateFile.close();
-    }
-
     double SeatMap::PrintSeatData(int row, int seat, int daysToFlight, int newDist) {
-        Seats[row][seat]->Program3(daysToFlight,newDist);
         return Seats[row][seat]->Get_cost_of_seat();
     }
 
@@ -178,10 +145,6 @@ namespace FinalProject {
         else {
             return false;
         }
-    }
-
-    Seat SeatMap::Return_Seat_Object(int row, int seat) {
-        return *Seats[row][seat];
     }
 
     void SeatMap::Reserve_From_File(int row, int seat, Passenger *passenger_from_file) {

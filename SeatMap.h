@@ -33,14 +33,8 @@ namespace FinalProject {
         // Get a number of seats available
         int Seats_available();
 
-        // Write out data
-        void WriteDataToFile();
-
         // Print Seat Data for Program 3
         double PrintSeatData(int row, int seat, int daysToFlight, int newDist);
-
-        // Return Seat Object Pointer
-        Seat Return_Seat_Object(int row, int seat);
 
         // Last Assigned Seat Object
         Seat *last_assigned_seat;
@@ -51,8 +45,8 @@ namespace FinalProject {
 
     private:
         // These are virtually constant, as they are private data member that do not include a method for changing them
-        int plane_rows;
-        int plane_seats_per_row;
+        int plane_rows = 0;
+        int plane_seats_per_row = 0;
 
         FinalProject::Seat* **Seats;
 
