@@ -6,6 +6,8 @@
 #include <ctime>
 
 namespace FinalProject {
+    class SeatMap;
+    class Passenger;
     class Plane {
     public:
         // This is the constructor for the plane class; this will set the private data members
@@ -76,7 +78,7 @@ namespace FinalProject {
         // Every Plane Object will also Require a SeatMap Object
         // This must be a pointer, as I cannot create the object completely until
         // seats and rows are defined
-        FinalProject::SeatMap* plane_seat_map;
+        SeatMap* plane_seat_map;
     };
 }
 

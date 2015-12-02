@@ -9,6 +9,8 @@
 #include "Passenger.h"
 
 namespace FinalProject {
+    class Seat;
+    class Passenger;
     class SeatMap {
     public:
         SeatMap(int rows, int seats_per_row);

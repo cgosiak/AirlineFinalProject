@@ -429,13 +429,25 @@ namespace FinalProject {
                 for (int j = 0; j < current_flight_amount; ++j) {
                     if (current_flights[j]->Get_Flight_Num() == flight_assigned) {
                         if (seat_assigned > 0 && row_assigned > 0) {
-                            current_flights[j]->Add_Passenger_To_Flight(first_nam, last_nam, age_used, row_assigned,
-                                                                        seat_assigned);
-                            current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned - 1),
-                                                                                           (seat_assigned - 1),
-                                                                                           current_flights[j]->most_recently_added);
-                            all_passengers[current_passenger_amount] = current_flights[j]->most_recently_added; // add the most recently added passenger to the list of all passengers
-                            current_passenger_amount++;
+                            if (Check_For_Duplicate_Passenger(first_nam,last_nam,age_used)) {
+                                selected_passenger = Get_Duplicate_Passenger(first_nam,last_nam,age_used);
+
+                                selected_flight = current_flights[j];
+
+                                selected_flight->Add_Passenger_To_Flight(selected_passenger,row_assigned,seat_assigned);
+
+                                selected_flight->assigned_plane->Reserve_From_External_File(row_assigned-1, seat_assigned-1,
+                                                                                            selected_flight->most_recently_added);
+                            }
+                            else {
+                                current_flights[j]->Add_Passenger_To_Flight(first_nam, last_nam, age_used, row_assigned,
+                                                                            seat_assigned);
+                                current_flights[j]->assigned_plane->Reserve_From_External_File((row_assigned - 1),
+                                                                                               (seat_assigned - 1),
+                                                                                               current_flights[j]->most_recently_added);
+                                all_passengers[current_passenger_amount] = current_flights[j]->most_recently_added; // add the most recently added passenger to the list of all passengers
+                                current_passenger_amount++;
+                            }
                         }
                     }
                 }
@@ -813,7 +825,79 @@ namespace FinalProject {
     }
 
     bool Airport::Passenger_Options() {
+        UsefulFunctions useThis;
         cout << "\nPassenger Options for: " << selected_passenger->Get_Name() << std::endl;
+        int usersChoice;
+        cout << "\nOptions:\n" <<
+        "1 - Add Passenger to Flight |   2 - Print Flights for This Passenger\n" <<
+        "3 - Delete Passenger        |   4 - Return to Main\n" <<
+        "Your Choice [Enter]: ";
+        cin >> usersChoice;
+        cout << std::endl;
+        switch (usersChoice) {
+            case 1: {
+                // Select the flight
+                Select_New_Flight();
+
+                // Print Seat Mapping Quick
+                selected_flight->assigned_plane->Print_seat_map();
+
+                // Assign Seat
+                int row_user;
+                int seat_user;
+
+                std::string userSeat;
+
+                cout << "Row for Reservation: ";
+                cin >> row_user;
+
+                cout << "Seat for Reservation: ";
+                cin >> userSeat;
+
+
+                seat_user = useThis.getIntFromSeatLetter(useThis.changeToUpper(userSeat));
+                row_user--;
+
+                selected_flight->Add_Passenger_To_Flight(selected_passenger, row_user, seat_user);
+
+                selected_flight->assigned_plane->Reserve_Seat_For_Passenger(row_user, seat_user,
+                                                                            selected_flight->most_recently_added);
+                break;
+            }
+            case 2: {
+                selected_passenger->Print_Flights_Attending();
+                break;
+            }
+            case 3: {
+                //nothins
+                break;
+            }
+            case 4: {
+                return false;
+            }
+            default: {
+                cout << "Not a valid Option!" << std::endl;
+                break;
+            }
+        }
+        return true;
+    }
+
+    bool Airport::Check_For_Duplicate_Passenger(std::string f_name, std::string l_name, int age) {
+        for (int i = 0; i < current_passenger_amount; ++i) {
+            if (all_passengers[i]->Get_First() == f_name && all_passengers[i]->Get_Last() == l_name && all_passengers[i]->Get_Age() == age) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    Passenger *Airport::Get_Duplicate_Passenger(std::string f_name, std::string l_name, int age) {
+        for (int i = 0; i < current_passenger_amount; ++i) {
+            if (all_passengers[i]->Get_First() == f_name && all_passengers[i]->Get_Last() == l_name && all_passengers[i]->Get_Age() == age) {
+                return all_passengers[i];
+            }
+        }
+        return nullptr;
     }
 }

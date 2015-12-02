@@ -1,20 +1,17 @@
 #ifndef MYPROGRAM3_PASSENGER_H
 #define MYPROGRAM3_PASSENGER_H
 
+#include "Flight.h"
 
+/*
+ * Our namespace for AirlineFinalProject
+ */
 namespace FinalProject {
 
     class Flight; //  Must do this to resolve circular dependency between Flight and Passenger Objects
     class Seat; //  Must do this to resolve circular dependency between Seat and Passenger Objects
 
-
-    class Passenger {/**
-         * Retrieves and stores passenger information and also links to assigned flights and seats.
-         * @param {string} str The string to repeat.
-         * @param {number} [times=1] How many times to repeat the string.
-         * @returns {string}
-         */
-
+    class Passenger {
 
         public:
 
@@ -25,6 +22,12 @@ namespace FinalProject {
 
             // Get Full Name
             std::string Get_Name();
+
+            // Get First Name
+            std::string Get_First();
+
+            // Get Last Name
+            std::string Get_Last();
 
             // Get Seat Assigned
             std::string Get_Assigned_Seat();
@@ -43,6 +46,9 @@ namespace FinalProject {
 
             // get age of passenger
             int Get_Age();
+
+            // Print all the flights this passenger is on
+            void Print_Flights_Attending();
 
             // This is used to get a string to write to external file!
             std::string Get_Writable_Data(int flight_num);

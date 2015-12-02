@@ -117,6 +117,12 @@ namespace FinalProject {
         // Passenger Selected Tools
         bool Passenger_Options();
 
+        // Check for duplicate
+        bool Check_For_Duplicate_Passenger(std::string f_name, std::string l_name, int age);
+
+        // Return Passenger Object
+        Passenger* Get_Duplicate_Passenger(std::string f_name, std::string l_name, int age);
+
 
     private:
         int current_flight_amount = 0;

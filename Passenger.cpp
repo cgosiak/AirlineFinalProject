@@ -72,4 +72,29 @@ namespace FinalProject {
     int Passenger::Get_Age() {
         return age;
     }
+
+    void Passenger::Print_Flights_Attending() {
+        cout <<  "Passenger: " << Get_Name() << " Flights" << std::endl;
+        for (int i = 0; i < booked_flights; ++i) {
+            if (i == 0) {
+                cout << "__________________________________________________________" << std::endl;
+                cout << "| NUM | FLIGHT | DEST | DEPARTURE   | ARRIVAL     | DAYS |" << std::endl;
+                cout << "----------------------------------------------------------" << std::endl;
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(6) << on_these_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << on_these_flights[i]->Get_Destination() << " |" << std::setw(12) << on_these_flights[i]->Get_Time_Departing() << " |" << std::setw(12) << on_these_flights[i]->Get_Time_Arriving() << " | " << std::setw(4) << on_these_flights[i]->Get_Days_To_Flight() << " | " << std::endl;
+                cout << "----------------------------------------------------------" << std::endl;
+            }
+            else {
+                cout << "| " << std::setw(3) << (i+1) << " | " << std::setw(6) << on_these_flights[i]->Get_Flight_Num() << " | " << std::setw(4) << on_these_flights[i]->Get_Destination() << " |" << std::setw(12) << on_these_flights[i]->Get_Time_Departing() << " |" << std::setw(12) << on_these_flights[i]->Get_Time_Arriving() << " | " << std::setw(4) << on_these_flights[i]->Get_Days_To_Flight() << " | " << std::endl;
+                cout << "----------------------------------------------------------" << std::endl;
+            }
+        }
+    }
+
+    std::string Passenger::Get_First() {
+        return first_name;
+    }
+
+    std::string Passenger::Get_Last() {
+        return last_name;
+    }
 }

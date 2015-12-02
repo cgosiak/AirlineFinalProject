@@ -8,6 +8,7 @@
 #include "Passenger.h"
 
 namespace FinalProject {
+    class Passenger;
     class Seat {
     public:
         Seat(double basePriceOfSeat, int daysLeftToFlight, int row, int seat, bool isIsle);

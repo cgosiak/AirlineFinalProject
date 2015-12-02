@@ -6,6 +6,9 @@
 #include "SeatMap.h"
 
 namespace FinalProject {
+    class SeatMap;
+    class Plane;
+    class Passenger;
     class Flight {
     public:
         // Default Constructor

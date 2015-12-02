@@ -105,7 +105,10 @@ bool user_selections(FinalProject::Airport& airport) {
             break;
         case 8:
             // Select a passenger
-
+            airport.Select_Passenger();
+            while (airport.Passenger_Options()) {
+                // awwwwww yeahhhhhhhhhhhhhh
+            }
 
             break;
         case 9:
