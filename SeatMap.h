@@ -20,6 +20,7 @@ namespace FinalProject {
 
         // Generate All the Seats in a Seat Mapping
         void  Generate_seats();
+        
         // This will clean up the 2d pointer array when finished
         void  Dismember_seats();
 

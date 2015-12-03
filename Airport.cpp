@@ -964,5 +964,9 @@ namespace FinalProject {
                 cout << "Flight " << std::to_string(current_flights[i]->Get_Flight_Num()) << ": " << "FAIL" << std::endl;
             }
         }
+
+        // I suppose it would be a good idea to test the cost of flights
+
+        // Other tests are the creation of the planes/flights/passengers from the external files
     }
 }
