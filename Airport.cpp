@@ -230,6 +230,7 @@ namespace FinalProject {
                     Select_New_Plane();
 
                     selected_flight->Assign_Plane(selected_plane);
+                    selected_plane->Update_days_to_flight(selected_flight->Get_Days_To_Flight());
                 }
                 else {
                     cout << "\nNo Planes Exist Yet!" << std::endl;
@@ -670,6 +671,7 @@ namespace FinalProject {
                             if (test_plane_num == plane) {
                                 // Assign plane object to flight
                                 current_flights[i]->Assign_Plane(planes_at_airport[j]);
+                                planes_at_airport[j]->Update_days_to_flight(current_flights[i]->Get_Days_To_Flight());
                             }
                         }
                     }
@@ -966,6 +968,74 @@ namespace FinalProject {
         }
 
         // I suppose it would be a good idea to test the cost of flights
+        // Base Cost for all planes is currently set to $1000.00
+        // ALl planes are set up like so
+        // rows 1-3 = First Class
+        // rows 4-7 = Economy Plus Class
+        // all other rows = Economy Class
+
+        // Plane cost testing
+        cout << "\nPlane Cost Testing!" << std::endl;
+        Plane *current_test = new Plane(1111,10,6);
+        current_test->Update_days_to_flight(20);
+        if (current_test->Get_Cost_of_Seat(2,1) == 1100.00) {
+            cout << "Flight 1111 First Class Test: FAIL" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 First Class Test: PASS" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(4,1) == 4000.00) {
+            cout << "Flight 1111 Economy Plus Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Plus Class Test: FAIL" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(7,1) == 1100.00) {
+            cout << "Flight 1111 Economy Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Class Test: FAIL" << std::endl;
+        }
+        // Change days to flight
+        current_test->Update_days_to_flight(46);
+        if (current_test->Get_Cost_of_Seat(2,1) == 1000.00) {
+            cout << "Flight 1111 First Class Test: FAIL" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 First Class Test: PASS" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(4,1) == 3000.00) {
+            cout << "Flight 1111 Economy Plus Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Plus Class Test: FAIL" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(7,1) == 1000.00) {
+            cout << "Flight 1111 Economy Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Class Test: FAIL" << std::endl;
+        }
+        // Change days to flight
+        current_test->Update_days_to_flight(4);
+        if (current_test->Get_Cost_of_Seat(2,1) == 1200.00) {
+            cout << "Flight 1111 First Class Test: FAIL" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 First Class Test: PASS" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(4,1) == 5000.00) {
+            cout << "Flight 1111 Economy Plus Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Plus Class Test: FAIL" << std::endl;
+        }
+        if (current_test->Get_Cost_of_Seat(7,1) == 1200.00) {
+            cout << "Flight 1111 Economy Class Test: PASS" << std::endl;
+        }
+        else {
+            cout << "Flight 1111 Economy Class Test: FAIL" << std::endl;
+        }
 
         // Other tests are the creation of the planes/flights/passengers from the external files
     }

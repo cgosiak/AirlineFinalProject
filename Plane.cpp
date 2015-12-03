@@ -51,7 +51,7 @@ namespace FinalProject {
     }
 
     void Plane::Generate_seat_map() {
-        plane_seat_map = new SeatMap(plane_rows,plane_seats_per_row);
+        plane_seat_map = new SeatMap(plane_rows,plane_seats_per_row,days_to_flight);
     }
 
     void Plane::Print_seat_map() {
@@ -135,7 +135,7 @@ namespace FinalProject {
         assigned_to_flight = false;
 
         // give a brand new seat mapping
-        plane_seat_map = new SeatMap(plane_rows, plane_seats_per_row);
+        plane_seat_map = new SeatMap(plane_rows, plane_seats_per_row, days_to_flight);
     }
 
     bool Plane::Reserve_Seat_For_Passenger(int row, int seat, Passenger *reserving_passenger) {
@@ -167,5 +167,14 @@ namespace FinalProject {
         packet_to_write = "plane_num=" + std::to_string(flightNumber) + "\nrows=" + std::to_string(plane_rows) + "\nseats_per_row=" + std::to_string(plane_seats_per_row);
 
         return packet_to_write;
+    }
+
+    void Plane::Update_days_to_flight(int days_to) {
+        days_to_flight = days_to;
+        plane_seat_map->Update_Days_To_Flight(days_to_flight);
+    }
+
+    double Plane::Get_Cost_of_Seat(int row, int seat) {
+        return plane_seat_map->Get_Cost_of_Seat(row,seat);
     }
 }

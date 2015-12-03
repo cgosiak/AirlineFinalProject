@@ -50,6 +50,9 @@ namespace FinalProject {
 
         std::string mySeatName = "Unknown";
 
+        // Update days to flight and re-cost the seats
+        void Update_Days_and_Time(int days_to);
+
     private:
         bool isleSeat = false;
         std::string mySeatLetter = "X";

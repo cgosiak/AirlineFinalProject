@@ -207,4 +207,9 @@ namespace FinalProject {
     void Seat::Assign_Passenger(Passenger *input_pass) {
         assigned_passenger = input_pass;
     }
+
+    void Seat::Update_Days_and_Time(int days_to) {
+        daysToFlight = days_to;
+        Get_cost_of_seat();
+    }
 }

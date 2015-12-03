@@ -63,10 +63,16 @@ namespace FinalProject {
         // Get the string to write to files
         std::string Get_Writable_Data();
 
+        // Update Days to flight
+        void Update_days_to_flight(int days_to);
+
+        // Get the cost of a single seat on the plane
+        double Get_Cost_of_Seat(int row, int seat);
 
     private:
         int flightNumber = 456;
         std::string airLineName = "Delta";
+        int days_to_flight = 0;
 
         // Bool to see if plane has been assigned to a flight
         bool assigned_to_flight = false;

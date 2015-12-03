@@ -17,9 +17,10 @@ using std::cin;
 
 namespace FinalProject {
 
-    SeatMap::SeatMap(int rows, int seats_per_row) {
+    SeatMap::SeatMap(int rows, int seats_per_row, int days_left) {
         plane_rows = rows;
         plane_seats_per_row = seats_per_row;
+        days_to_flight = days_left;
         Generate_seats();
     }
 
@@ -54,7 +55,8 @@ namespace FinalProject {
                 else {
                     isIsle = false;
                 }
-                Seats[rowNum][seatNum] = new Seat(1000.00, 3, rowNum, seatNum, isIsle);
+                // Need to set the actual days to flight in the creation of the seat
+                Seats[rowNum][seatNum] = new Seat(1000.00, days_to_flight, rowNum, seatNum, isIsle);
                 if (rowNum > 0 && rowNum <=3) {
                     // First class
                     Seats[rowNum][seatNum]->Assign_seat_type(1);
@@ -151,5 +153,19 @@ namespace FinalProject {
         Seats[row][seat]->Reserve_Seat();
         Seats[row][seat]->Assign_Passenger(passenger_from_file);
         last_assigned_seat = Seats[row][seat];
+    }
+
+    void SeatMap::Update_Days_To_Flight(int days_to) {
+        days_to_flight = days_to;
+        for (int rowNum = 0; rowNum < plane_rows; ++rowNum) {
+            for (int seatNum = 0; seatNum <= plane_seats_per_row; seatNum++) {
+                Seats[rowNum][seatNum]->Update_Days_and_Time(days_to_flight);
+            }
+        }
+    }
+
+    double SeatMap::Get_Cost_of_Seat(int row, int seat) {
+        double cost = Seats[row-1][seat-1]->Get_cost_of_seat();
+        return cost;
     }
 }

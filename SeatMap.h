@@ -13,7 +13,7 @@ namespace FinalProject {
     class Passenger;
     class SeatMap {
     public:
-        SeatMap(int rows, int seats_per_row);
+        SeatMap(int rows, int seats_per_row, int days_left);
 
         // This will print the current seat mapping
         void Print_seat_map();
@@ -45,11 +45,18 @@ namespace FinalProject {
         // Reserve seat from external file
         void Reserve_From_File(int row, int seat, Passenger *passenger_from_file);
 
+        // Update all seats with new days to flight
+        void Update_Days_To_Flight(int days_to);
+
+        // Get the cost of a single seat in the mapping
+        double Get_Cost_of_Seat(int row, int seat);
+
 
     private:
         // These are virtually constant, as they are private data member that do not include a method for changing them
         int plane_rows = 0;
         int plane_seats_per_row = 0;
+        int days_to_flight = 0;
 
         FinalProject::Seat* **Seats;
 
