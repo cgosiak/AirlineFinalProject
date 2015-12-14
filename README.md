@@ -57,3 +57,21 @@ https://drive.google.com/file/d/0B30qgtKvuIqcdlFJY0tWNnlrdzA/view?usp=sharing
 	* Error checking of inputs
 	* Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah
 
+(12/02/2015)(Caleb G.)
+* Absolutely Need
+	* ~~Test Cases!~~
+* It is easier to say what is not done at this point:
+	* ~~Fix Seat Type Errors, irritation station right now, all are first class~~
+	* ~~Fix date/time stuff~~
+	* ~~Be able to sort flights, in order of flight date~~
+	* ~~Delete flights if they are passed~~
+	* ~~Assign the same plane to multiple flights~~
+	* ~~Make unique keys for flights, and planes~~
+	* ~~Flight Options: dep_date/time and arr_date/time~~
+	* ~~Add a passenger to multiple flights~~
+	* ~~Error checking of inputs~~
+	* ~~Make code look wonderful, consistent naming schemes, in the right areas, blah blah blah~~
+
+(12/09/15-12/13/15)(Caleb G)
+Finished GUI integration, uploaded changes. Things are working now.
+
